@@ -15,8 +15,8 @@ cat .gitignore
 ## Guardar los cambios de un archivo html en el repositorio
 ### Afegir fitxers
 
-git add *.html
-git add README
+git add *.html  
+git add README  
 
 ### commit
 git commit -m 'initial project version'
@@ -44,19 +44,19 @@ git checkout -D "nombre de rama"
 
 ## git en el servidor
 
-git clone
-git fork
+git clone  
+git fork  
 
 # Sincronizarse
 
-git remote
-git fetch
-git pull
-git push
+git remote   
+git fetch  
+git pull  
+git push  
 
 # Ver listado de repositorios remotos
 
-git remote -v
+git remote -v  
 
 
 ## Canal de Discord del curso
