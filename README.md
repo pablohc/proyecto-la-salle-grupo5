@@ -7,6 +7,7 @@
 git init
 
 ## Ignorar fitxers
+Editar el fichero para añadir las extensiones o ficheros que no queremos que se registren en el git
 
 cat .gitignore
 
