@@ -57,3 +57,8 @@ git push
 # Ver listado de repositorios remotos
 
 git remote -v
+
+
+## Canal de Discord del curso
+
+https://discord.gg/ueWr8fNV
