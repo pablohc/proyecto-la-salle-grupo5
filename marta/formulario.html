@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario/Mulimedia</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+    <div class="form">
+        <form action="/root" method ="POST">
+            <!-- Email -->
+            <label for="email">Email:</label><br>
+            <input type="email" name="email" id="email" required>
+            <br><br>
+            <!-- Fecha Nacimiento -->
+            <label for="date">Fecha nacimiento:</label><br>
+            <input type="date" name="date" id="date" required>
+            <br><br>
+            <!-- Género -->
+            <label>Género:</label><br>
+			<input type="radio" id="genero-masculino" name="genero" value="masculino" required>
+            <label for="genero-masculino">Masculino</label>
+
+			<input type="radio" id="genero-femenino" name="genero" value="femenino" required>
+            <label for="genero-femenino">Femenino</label>
+            <br><br>
+            <!-- Color -->
+            <label for="color">Color:</label>
+            <input type="color" id="color" name="color" value="#ff0000">
+            <br><br>
+            <!-- Género Musical -->
+            <label for="music">Género Musical:</label><br>
+            <select name="music" id="music" >
+                <option value="techno">Techno</option>
+                <option value="pop">Pop</option>
+                <option value="classical">Classical</option>
+                <option value="jazz">Jazz</option>
+            </select>
+            <br><br>
+            <!-- Volumen -->
+            <label for="">Volumen:</label><br>
+            <input type="range" id="vol" name="volumen" min="0" max="10" value="8"> 
+            <br>
+            <!-- Aceptar Condiciones -->
+            <label for="aceptar"></label><br><br>
+            <input type="checkbox" id="condicines" name="condicines" required>
+            <label for="condicines">Acepto las condiciones</label>
+            <br>
+            <br>
+            <!-- Botón Registro -->
+            <input type="submit" value="Registrarse">
+        </form>
+    </div>
+    <div class="multimedia">
+        <video src="./assets/sample-5s (4).mp4" type="video/mp4" width="800px" autoplay loop muted>
+    </video>
+    </div>
+</body>
+</html>
+
