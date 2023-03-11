@@ -50,6 +50,44 @@
             <br>
             <a href="https://www.youtube.com/watch?v=YalmIkwgTP4" target="_blank">Estudia online en La Salle (_blank)</a>
         </aside>
+        <form action="\route" method="post">
+            <br>
+            <h3>Formulario de Contacto</h3>
+            <label for="email">E-mail: </label>
+                <input type="email" name="email" id="email" required>
+            <br><br>
+            <label for="f-nac">Fecha de Nacimiento: </label>
+                <input type="date" name="f-nac" id="f-nac" required>
+            <br><br>
+            <label for="gen">Género: </label required>
+                <input type="radio" name="gen" value="M" id="M" required>Masculino
+                <input type="radio" name="gen" value="F" id="F" required>Femenino
+                <input type="radio" name="gen" value="O" id="O" required>Otro 
+            <br><br>
+            <label for="color-fav">Color Favorito: </label> 
+            <input type="color" name="" id="color-fav" value="#ff0000">
+            <br><br>
+            <label for="gen-music-fav">Género de música Favorito: </label> 
+                <select name="gen-music" id="gen-music-fav">
+                    <option value="rock">Rock</option>
+                    <option value="pop">Pop</option>
+                    <option value="metal">Metal</option>
+                </select>
+            <br><br>
+            <label for="ini-vol-level">Nivel de volumen inicial: </label>
+                <input type="range" name="volumen" id="ini-vol-level" min="1" max="10" value="8">
+            <br><br>
+            <label for="terms"></label>
+                <input type="checkbox" name="terms" id="terms" required>Acepto los términos.
+            <br><br>
+            <label for=""></label>
+                <input type="submit" value="Enviar">
+                <input type="reset" value="Borrar">
+        </form>
+        <br>
+        <video width="100%" loop autoplay muted>
+            <source src="https://download.samplelib.com/mp4/sample-5s.mp4" type="video/mp4">
+        </video>
     </main>
     <footer>
         <p><em>Primer Ejercicio HTML</em> by <strong>Pablo Noviello</strong></p>
