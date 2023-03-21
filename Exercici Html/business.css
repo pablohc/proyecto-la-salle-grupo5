@@ -1,0 +1,85 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    /* border: 1px rgb(232, 158, 67) solid; */
+}
+body , html {
+    height: 100%;
+    width:100%;
+    min-width: 1024px;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* Header */
+.header-top {
+   display: flex;
+   flex-direction: column;
+   background-image: url("./images/header.jpg");
+   background-size: cover;
+   background-repeat: no-repeat;
+   background-position: 0px -130px;
+   height: 350px;
+}
+
+.header-top h1 {
+  margin-top: 160px;
+  margin-left: 20px;
+  color:white;
+}
+
+header nav {
+    background-color: darkslateblue;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+ul {
+    display: flex;
+    flex-direction: row;
+}
+ul li {
+    list-style: none;
+    margin-left:50px;
+    padding:10px;
+}
+ul li:hover {
+    background-color: white;
+    border-radius: 5px;
+}
+
+li a{
+    color:white;
+    text-decoration: none;
+}
+li a:hover {
+    color:blueviolet;
+}
+
+/*------ MAIN  ------*/
+/* Who we are  */
+
+.whoweare {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 300;
+    background-color:rgb(245, 237, 237);
+    height:700px;
+}
+.whoweare h2 {
+    font-size: 30px;
+    font-weight: 400;
+    margin: 30px 0px 40px 0px;
+}
+
+.articles {
+    margin:50px;
+    display: flex;
+    flex-direction: row;
+}
