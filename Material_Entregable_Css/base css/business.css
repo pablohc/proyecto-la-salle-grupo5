@@ -148,7 +148,7 @@ align-items: center;
 .form textarea {
     width: 300px;
     margin-bottom: 10px;
-    color: rgb(255, 255, 255);
+    color:black;
     border-radius: 5px;
 }
 
@@ -162,7 +162,7 @@ align-items: center;
     position: relative;
     width: 300px;
     margin-bottom: 10px;
-    color: white;
+    color: rgb(0, 0, 0);
     border: none;
     height: 30px;
     border-radius: 5px;
