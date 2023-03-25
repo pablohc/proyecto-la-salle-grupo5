@@ -19,7 +19,7 @@ body {
 .header-top {
    display: flex;
    flex-direction: column;
-   background-image: url("./images/header.jpg");
+   background-image: url("../img/header.jpg");
    background-size: cover;
    background-repeat: no-repeat;
    background-position: 0px -130px;
@@ -70,7 +70,6 @@ li a:hover {
     align-items: center;
     background-color:rgb(245, 237, 237);
     height:750px;
-    border:1px solid red;
 }
 .whoweare-heading {
     display: flex;
@@ -105,3 +104,113 @@ li a:hover {
     flex-direction: column;
 }
 
+
+/*------ FORM - EMAIL US  ------*/
+
+/* img fondo */
+.emailus {
+    position: relative ;
+    background-color: rgb(100, 84, 146);
+    padding-bottom: 150px;
+    padding-top: 20px;
+}
+.emailus::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../img/map-image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+/* disposición formulario */
+.form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 0px;
+    border-radius: 10px;
+    display: flex;
+align-items: center;
+}
+
+.title-email{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+.form textarea {
+    width: 300px;
+    margin-bottom: 10px;
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+}
+
+.form label {
+    color: white;
+    font-size: 20px;
+    padding-right: 2rem;
+}
+
+.form input {
+    position: relative;
+    width: 300px;
+    margin-bottom: 10px;
+    color: white;
+    border: none;
+    height: 30px;
+    border-radius: 5px;
+}
+
+
+.form input[type="submit"]{
+    width: 100px;
+    background-color: white;
+    color: black;
+    opacity: 1;
+    margin-top: 1.2rem;
+    margin-left: 8rem;
+    cursor:pointer;
+}
+
+.form input[type="submit"]:hover{
+    width: 100px;
+    background-color: rgb(57, 42, 123) ;
+    color: white;
+    opacity: 1;
+    margin-top: 1.2rem;
+    margin-left: 8rem;
+    cursor:pointer;
+}
+
+.form-div {
+    margin: .4em 0;
+
+  }
+  .form-div input {
+    float: right;
+  }
+  .form-div textarea {
+    float: right;
+  }
+
+/* FOOTER */
+footer {
+    background-color: rgb(57, 42, 123);
+    color: white;
+    font-size: small;
+    padding: 10px;
+}
+footer p {
+    text-align: right;
+}
+
+footer a{
+    color: white;
+}
