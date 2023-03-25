@@ -18,7 +18,7 @@ body {
 .header-top {
    display: flex;
    flex-direction: column;
-   background-image: url("../img/2.jpg");
+   background-image: url("../img/header.jpg");
    background-size: cover;
    background-repeat: no-repeat;
    background-position: 0px -130px;
