@@ -67,15 +67,14 @@ li a:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:rgb(245, 237, 237);
-    height:750px;
-    border:1px solid red;
+    background-color:#e7e7e7;
+    height:800px;
+    /* border:1px solid red; */
 }
 .whoweare-heading {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 40px;
 }
 .whoweare-heading h2  {
     font-size: 30px;
@@ -89,15 +88,28 @@ li a:hover {
 .articles-container {
     display: flex;
     flex-direction: row;
-    padding: 40px;
+    justify-content: center; 
+    padding: 30px;
+    width:100%;
+    margin:0 auto;
+    height:600px;
 }
 .articles-container h3 {
     margin-bottom: 15px;
 }
 .content-left {
-   
+    width:50%;
+    padding:20px;
+    border-right: 1px solid grey;
 }
 .content-right {
     display:flex;
     flex-direction: column;
+    width:50%;
+    padding:20px;
+    justify-content: space-between;
 }
+.add {
+    width:40%;
+    margin: 0 auto;
+} 
