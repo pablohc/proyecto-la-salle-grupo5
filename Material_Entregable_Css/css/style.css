@@ -219,6 +219,7 @@ h2.t-center, h3.t-center {
     flex-direction: column;
     align-items: center;
     margin-top: 50px;
+    margin-bottom: 50px;
 }
 .find-us {
     margin-top: 20px;
@@ -240,3 +241,113 @@ h2.t-center, h3.t-center {
     margin-bottom: 10px;
     display: block;
  }
+
+ /*------ FORM - EMAIL US  ------*/
+
+/* img fondo */
+.emailus {
+    position: relative ;
+    background-color: rgb(100, 84, 146);
+    padding-bottom: 150px;
+    padding-top: 20px;
+}
+.emailus::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("../img/map-image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+/* disposición formulario */
+.form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding-top: 0px;
+    border-radius: 10px;
+    display: flex;
+align-items: center;
+}
+
+.title-email{
+    color: white;
+    font-size: 30px;
+    text-align: center;
+    justify-content: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+
+}
+.form textarea {
+    width: 300px;
+    margin-bottom: 10px;
+    color:black;
+    border-radius: 5px;
+}
+
+.form label {
+    color: white;
+    font-size: 20px;
+    padding-right: 2rem;
+}
+
+.form input {
+    position: relative;
+    width: 300px;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+    border: none;
+    height: 30px;
+    border-radius: 5px;
+}
+
+
+.form input[type="submit"]{
+    width: 100px;
+    background-color: white;
+    color: black;
+    opacity: 1;
+    margin-top: 1.2rem;
+    margin-left: 8rem;
+    cursor:pointer;
+}
+
+.form input[type="submit"]:hover{
+    width: 100px;
+    background-color: rgb(57, 42, 123) ;
+    color: white;
+    opacity: 1;
+    margin-top: 1.2rem;
+    margin-left: 8rem;
+    cursor:pointer;
+}
+
+.form-div {
+    margin: .4em 0;
+
+  }
+  .form-div input {
+    float: right;
+  }
+  .form-div textarea {
+    float: right;
+  }
+
+/* FOOTER */
+footer {
+    background-color: rgb(57, 42, 123);
+    color: white;
+    font-size: small;
+    padding: 10px;
+}
+footer p {
+    text-align: right;
+}
+
+footer a{
+    color: white;
+}
