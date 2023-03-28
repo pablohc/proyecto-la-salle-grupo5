@@ -1,6 +1,6 @@
 # proyecto-la-salle
 
-##Visita el site del proyecto
+## Visita el site del proyecto
 https://pablohc.github.io/proyecto-la-salle-grupo5/ 
 
 # Comandos de git
