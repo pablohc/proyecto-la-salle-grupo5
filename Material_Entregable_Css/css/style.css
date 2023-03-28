@@ -164,3 +164,52 @@ li a:hover {
 .service p {
     grid-area: 2 / 2 / 4 / 4;
 }
+
+/* Portfolio */
+
+.rotate-image {
+    transition-duration: 2s;
+    transition: transform .7s ease-in-out;
+}
+
+.rotate-image:hover {
+    transform: rotate(-10deg);
+}
+
+.special-rotate-image {
+    transition: all .5s ease-in-out; /* animar la transición con una duración de 0.5 segundos y una función de aceleración */
+}
+
+.special-rotate-image:hover {
+    transform: rotate(360deg);
+    border-radius: 50%; /* convertir la imagen en un óvalo */ 
+}
+
+.t-center {
+    text-align: center;
+}
+  
+h2.t-center, h3.t-center {
+    margin-top: 20px;
+}
+
+#portfolio{
+    background-color: #e7e7e7;
+}
+
+#portfolio-title{
+    margin-bottom: 50px;
+}
+
+#portfolio-subtitle{
+    margin-bottom: 20px;
+}
+
+.image-container {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    width: fit-content;
+    margin: auto;
+}
