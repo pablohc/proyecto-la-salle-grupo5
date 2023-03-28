@@ -13,6 +13,23 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
+h2{
+    font-size: 30px;
+    font-weight: 600;
+    margin: 30px 0px 40px 0px;
+}
+h3{
+    font-weight: 400;
+}
+h4{
+    font-size: 22px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+p{
+    text-align: justify;
+}
+
 /* Header */
 .header-top {
    display: flex;
@@ -74,12 +91,8 @@ li a:hover {
     flex-direction: column;
     align-items: center;
 }
-.whoweare-heading h2  {
-    font-size: 30px;
-    font-weight: 400;
-    margin: 30px 0px 40px 0px;
-}
-.whoweare-heading p {
+
+.whoweare-heading h3 {
     width: 60%;
     text-align: center;
 }
@@ -119,14 +132,10 @@ li a:hover {
 /* Services  */
 
 .section-heading {
+    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-.whoweare-heading h2  {
-    font-size: 30px;
-    font-weight: 400;
-    margin: 30px 0px 40px 0px;
 }
 
 .container {
@@ -154,6 +163,7 @@ li a:hover {
     stroke: blue;
 }
 
+
 .service h3 { 
     grid-area: 1 / 2 / 2 / 4; 
     height: 30px;
@@ -166,6 +176,8 @@ li a:hover {
 }
 
 /* Portfolio */
+
+
 
 .rotate-image {
     transition-duration: 2s;
@@ -199,6 +211,7 @@ h2.t-center, h3.t-center {
 
 #portfolio-title{
     margin-bottom: 50px;
+    padding-top: 50px;
 }
 
 #portfolio-subtitle{
@@ -351,3 +364,4 @@ footer p {
 footer a{
     color: white;
 }
+
