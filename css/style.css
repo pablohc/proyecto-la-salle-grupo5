@@ -130,7 +130,6 @@ li a:hover {  /* unifique estilo hover nav*/
 /* Services  */
 
 .section-heading {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -148,25 +147,31 @@ li a:hover {  /* unifique estilo hover nav*/
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
 }
-    
+
 .service img { 
     grid-area: 1 / 1 / 3 / 2;
     height: 70px;
     width: 70px;
-    border-radius:200px;
-    border: 5px solid #AAA;
-    stroke: blue;
+    padding: 5px;
+    margin: 5px;
+    border: 5px solid #a8a8a8;
+    border-radius: 40px;
 }
 
+.service img:hover {
+    border: 5px solid rgb(97, 97, 97);
+    background-color: blueviolet;
+    color: red;
+    fill: aqua;
+}
 
 .service h3 { 
     grid-area: 1 / 2 / 2 / 4; 
     height: 30px;
     vertical-align: middle;
-
 }
     
 .service p {
@@ -174,8 +179,6 @@ li a:hover {  /* unifique estilo hover nav*/
 }
 
 /* Portfolio */
-
-
 
 .rotate-image {
     transition-duration: 2s;
