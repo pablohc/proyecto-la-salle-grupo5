@@ -48,32 +48,30 @@ p{
 }
 
 header nav {
-    background-color: rgb(114, 29, 194);
+    background-color: blueviolet; /* unifique color nav*/ 
     height: 50px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
+
 ul {
     display: flex;
     flex-direction: row;
-}
-ul li {
-    list-style: none;
-    margin-left:50px;
-    padding:10px;
-}
-ul li:hover {
-    background-color: white;
-    border-radius: 5px;
+    list-style: none; 
 }
 
-li a{
-    color:white;
+li a {
+    margin-left: 50px;
+    padding: 10px;
+    color: white;
     text-decoration: none;
 }
-li a:hover {
-    color:blueviolet;
+
+li a:hover {  /* unifique estilo hover nav*/ 
+    background-color: white;
+    border-radius: 5px;
+    color: blueviolet;
 }
 
 /*------ MAIN  ------*/
