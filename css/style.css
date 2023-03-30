@@ -284,7 +284,7 @@ h2.t-center, h3.t-center {
     padding-top: 0px;
     border-radius: 10px;
     display: flex;
-align-items: center;
+    align-items: center;
 }
 
 .title-email{
@@ -294,11 +294,10 @@ align-items: center;
     justify-content: center;
     padding-top: 30px;
     padding-bottom: 30px;
-
 }
+
 .form textarea {
     width: 300px;
-    margin-bottom: 10px;
     color:black;
     border-radius: 5px;
 }
@@ -312,7 +311,6 @@ align-items: center;
 .form input {
     position: relative;
     width: 300px;
-    margin-bottom: 10px;
     color: rgb(0, 0, 0);
     border: none;
     height: 30px;
