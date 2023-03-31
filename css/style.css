@@ -317,11 +317,7 @@ h3.t-center {
     margin: .4em 0;
 }
 
-.form-div input {
-    float: right;
-}
-
-.form-div textarea {
+.form-div input, .form-div textarea {
     float: right;
 }
 
@@ -337,7 +333,9 @@ h3.t-center {
     color: rgb(0, 0, 0);
     border: none;
     height: 30px;
+    padding: 2px;
     border-radius: 5px;
+    font-size: 15px;
 }
 
 .form textarea {
@@ -345,6 +343,8 @@ h3.t-center {
     color: black;
     border: none;
     border-radius: 5px;
+    font-size: 15px;
+    resize: vertical;
 }
 
 .form input[type="submit"] {
