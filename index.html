@@ -7,10 +7,12 @@
   <title>My Business Webpage</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <!--<link rel="stylesheet" href="./css/style.css"/>-->
+<link rel="stylesheet" href="./css/style.css"/>
 </head>
 
 <body>
+
+
   <!-- Header -->
   <header>
     <div class="header-top">
@@ -26,6 +28,8 @@
       </ul>
     </nav>
   </header>
+
+
   <!-- Main -->
   <main>
     <!-- Section Who we are -->
@@ -75,6 +79,8 @@
       </div>
     </section>
     <hr>
+
+
     <!-- Section Services -->
     <section class="section">
       <div class="section-heading">
@@ -113,6 +119,8 @@
         </div>
       </div>
     </section>
+
+
     <!-- Section Portfolio -->
     <section id="portfolio">
       <h2 class="t-center" id="portfolio-title">Portfolio</h2>
@@ -130,6 +138,8 @@
       </div>
       <br><br>
     </section>
+
+
     <!-- Contact -->
     <section class="location">
       <h2>Location</h2>
@@ -150,7 +160,7 @@
             Email Address: <a href="mailto:info@domain.com">info@domain.com</a>
           </address> <br>
           <address>
-            <strong class="address-title">Emea</strong>
+            <strong class="address-title">Email</strong>
             Carrer de Sant Joan de la Salle, 42<br>
             08022 Barcelona<br>
             Phone <a href="tel:932902474">932 90 24 74</a><br>
@@ -159,50 +169,79 @@
         </div>
       </div>
     </section>
+
+
     <!-- Email Us -->
-    <section class="emailus">
-      <h2 class="title-email">Email Us</h2>
-      <div class="form">
-        <form action="./root" method="POST">
-          <!-- Name -->
-          <div class="form-div">
-            <label for="name">Name*:</label>
-            <input type="text" name="name" id="name" required /><br />
-          </div>
-          <!-- Email -->
-          <div class="form-div">
-            <label for="email">Email*:</label>
-            <input type="email" name="email" id="email" required /><br />
-          </div>
-          <!-- Phone -->
-          <div class="form-div">
-            <label for="phone">Phone:</label>
-            <input type="tel" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" autocomplete="tel"
-              required /><br />
-          </div>
-          <!-- Subject -->
-          <div class="form-div">
-            <label for="subject">Subject*:</label>
-            <input type="text" name="subject" id="subject" /><br />
-          </div>
-          <!-- Message -->
-          <div class="form-div">
-            <label for="message">Message*:</label>
-            <textarea name="message" id="message" cols="40" rows="5" required></textarea>
-            <br />
-          </div>
-          <!-- Send Button -->
-          <input class="btn-send" type="submit" id="submit" value="Send" />
-        </form>
+    <div class="bg-image bg-primary" style="background-image: url('img/map-image.png');">
+    <section class="emailus container">
+    <!--Título-->
+      <div class="text-center">
+        <h2 class="title-email">Email Us</h2>
+      </div>
+    <!--------- Formulario --------->
+        <div class="form-group col-6 mx-auto">
+
+            <form action="./root" method="POST" class="form-row">
+                <!-- Name -->
+                <div class="form-group row">
+                  <label class="col-lg-2 col-form-label" for="name">Name*:</label>
+                  <div class="col-lg-10">
+                   <input type="text" class="form-control" name="name" id="name" required /><br />
+                  </div>
+                </div>
+                <!-- Email -->
+                <div class="form-group row">
+                  <label class="col-lg-2 col-form-label" for="email">Email*:</label>
+                  <div class="col-lg-10">
+                   <input type="email" class="form-control" name="email" id="email" required /><br />
+                  </div>
+                </div>
+                <!-- Phone -->
+                <div class="form-group row">
+                  <label class="col-lg-2 col-form-label" for="phone">Phone:</label>
+                  <div class="col-lg-10">
+                    <input type="tel" class="form-control" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" autocomplete="tel"
+                      required /> 
+                      <br>
+                  </div>
+                </div>
+                <!-- Subject -->
+                <div class="form-group row">
+                  <label  class="col-lg-2 col-form-label" for="subject">Subject*:</label>
+                  <div class="col-lg-10">
+                    <input type="text" class="form-control" name="subject" id="subject" /><br />
+                  </div>
+                </div>
+                <!-- Message -->
+                <div class="form-group row">
+                  <label  class="col-lg-2 col-form-label" for="message">Message*:</label>
+                  <div class="col-lg-10"> 
+                  <textarea name="message" class="form-control" id="message" cols="40" rows="5" required></textarea>
+                  <br />
+                </div>
+                </div>
+                <!-- Send Button -->
+                <div class="send d-flex justify-content-center">
+                   <input class="btn btn-light" type="submit" id="submit" value="Send" />
+                </div>
+            </form>
+        </div>
       </div>
     </section>
+  </div>
+
+
     <!-- Footer -->
-    <footer>
-      <p>&copy; 2016 - <a
+    <footer class="bg-primary">
+      <p class="d-flex justify-content-end text-footer">&copy; 2016 - <a
           href="https://www.salleurl.edu/ca?mn=6DT8lEV052jJG4Bekahc1h68dltam5-JoWMh.V1bi7TZFKPz-_feP">LaSalle</a>,
-        All Rights Reserved.</p>
+        All Rights Reserved.
+      </p>
     </footer>
   </main>
+
+
+ <!-- Script Bootstrap -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
