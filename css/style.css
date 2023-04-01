@@ -24,6 +24,20 @@
     color:white;
 }
 
+/* Navbar */
+.nav {    
+    background-color: rgb(114, 29, 194);    
+    height: 50px;    
+    align-items: center;
+}
+ul li {    
+    margin-left:30px;    
+    padding:5px;
+}
+.nav-link {    
+    color:white;
+}
+
 
 /*------ MAIN  ------*/
 /* Who we are  */
