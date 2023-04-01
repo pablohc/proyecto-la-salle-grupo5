@@ -19,17 +19,43 @@
 
   <!-- Header -->
   <header>
-    <div class="header-top">
-      <h1>My Business Webpage</h1>
+    <div class="container-fluid header-top no-gutters">
+      <div class="col-12 col-md-6">
+        <div class="image-container">
+          <img src="./img/header-mini.png" alt="hero" class="container-fluid no-gutters">
+          <div class="text-container">
+            <h1>My Business Webpage</h1>
+          </div>
+        </div>
+      </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="#who">Who We are?</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#location">Location</a></li>
-        <li><a href="#emailus">Email Us</a></li>
-      </ul>
+
+    <nav class="header nav navbar navbar-expand-lg ">
+      <div class="container-fluid no-gutters">
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav  list-unstyled ">
+            <li class="nav-item">
+              <a class="nav-link " href="#who">Who We are?</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#services">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#portfolio">Portfolio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#location">Location</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#emailus">Email Us</a>
+            </li>
+          </ul>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
     </nav>
   </header>
 
@@ -37,50 +63,56 @@
   <!-- Main -->
   <main>
     <!-- Section Who we are -->
-    <section class="whoweare">
-      <div class="whoweare-heading">
-        <h2>Who We are?</h2>
-        <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perro, quas vitae iusto ad nemo obcaecati tempora
-          laborum doloremque. </h3>
-      </div>
-      <div class="articles-container">
-        <div class="content-left">
-          <article class="art1">
-            <h4>Lorem ipsum</h4>
-            <p> <img src="./img/1.jpg" alt="toy1">
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio reprehenderit similique
-              labore
-              hic alias voluptate esse vitae, vel ut molestias dignissimos officiis saepe soluta modi
-              blanditiis
-              placeat atque dolores laudantium! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est sunt non
-              ipsa praesentium cupiditate voluptatibus recusandae delectus incidunt et. Ex accusantium consequuntur
-              consequatur quia. Blanditiis quae exercitationem laboriosam consectetur sunt. Lorem, ipsum dolor sit amet
-              consectetur adipisicing elit. Quidem totam earum, facere reiciendis nobis ipsa sequi eveniet dolores
-              expedita iusto quibusdam magnam quis. Explicabo, accusantium alias consequuntur id autem beatae. Lorem
-              ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam in rem dolore nobis assumenda quae
-              obcaecati distinctio vel reprehenderit atque, excepturi quasi doloribus aliquam consequatur, quia
-              aspernatur, recusandae similique inventore? </p>
-          </article>
+    <section class="whoweare col-12  d-flex">
+      <!-- <div class="container px-4 py-5" id="icon-grid"></div> -->
+      <!-- <div class="row"> -->
+        <div class="whoweare-heading col-12  d-flex ">
+          <h2>Who We are?</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, quas vitae iusto ad nemo obcaecati tempora
+            laborum doloremque. </p>
         </div>
-        <div class="content-right">
-          <article class="art2">
-            <h4>Lorem ipsum</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam repellendus, iste pariatur
-              tenetur
-              doloremque voluptate consequatur nisi accusamus possimus facere deleniti, atque laborum quo
-              voluptatem ducimus, aliquid nobis aut. Tempore.</p>
-          </article>
-          <img src="./img/ad.png" class="add" alt="publicidad"></img>
-          <article class="art3">
-            <h4>Lorem ipsum</h4>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit, in odio. Voluptatum odio quam eos quis
-              distinctio, perferendis obcaecati natus facere ipsam labore nisi provident voluptatem eaque porro odit
-              commodi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ut provident recusandae
-              exercitationem perspiciatis, quisquam assumenda? Doloribus iusto cum eaque aliquid deleniti totam non,
-              maxime asperiores id, molestiae, quas omnis?</p>
-          </article>
+
+
+        <div class="articles-container col-12  d-flex ">
+          <div class="content-left">
+            <article class="art1">
+              <h3>Lorem ipsum</h3>
+              <p> <img src="./img/1.jpg" alt="toy1">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio reprehenderit similique
+                labore
+                hic alias voluptate esse vitae, vel ut molestias dignissimos officiis saepe soluta modi
+                blanditiis
+                placeat atque dolores laudantium! Lorem ipsum, dolor sit amet consectetur adipisicing elit. Est sunt non
+                ipsa praesentium cupiditate voluptatibus recusandae delectus incidunt et. Ex accusantium consequuntur
+                consequatur quia. Blanditiis quae exercitationem laboriosam consectetur sunt. Lorem, ipsum dolor sit
+                amet consectetur adipisicing elit. Quidem totam earum, facere reiciendis nobis ipsa sequi eveniet
+                dolores expedita iusto quibusdam magnam quis. Explicabo, accusantium alias consequuntur id autem beatae.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laboriosam in rem dolore nobis assumenda quae
+                obcaecati distinctio vel reprehenderit atque, excepturi quasi doloribus aliquam consequatur, quia
+                aspernatur, recusandae similique inventore? </p>
+            </article>
+          </div>
+          <div class="content-right">
+            <article class="art2">
+              <h3>Lorem ipsum</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam repellendus, iste pariatur
+                tenetur
+                doloremque voluptate consequatur nisi accusamus possimus facere deleniti, atque laborum quo
+                voluptatem ducimus, aliquid nobis aut. Tempore.</p>
+            </article>
+            <img src="./img/ad.png" class="add"></img>
+            <article class="art3">
+              <h3>Lorem ipsum</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Velit, in odio. Voluptatum odio quam eos quis
+                distinctio, perferendis obcaecati natus facere ipsam labore nisi provident voluptatem eaque porro odit
+                commodi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto ut provident recusandae
+                exercitationem perspiciatis, quisquam assumenda? Doloribus iusto cum eaque aliquid deleniti totam non,
+                maxime asperiores id, molestiae, quas omnis?</p>
+            </article>
+
+          </div>
         </div>
-      </div>
+      <!-- </div> -->
     </section>
     <hr>
 
