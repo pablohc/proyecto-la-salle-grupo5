@@ -1,3 +1,4 @@
+
 /* Services  */
 
 img.service-png {
@@ -13,3 +14,32 @@ img.service-png:hover {
     border: 5px solid rgb(97, 97, 97);
     background-color: blueviolet !important;
 }
+
+
+.emailus{
+    color: white;
+}
+
+.title-email{
+    margin-bottom: 3rem;
+    font-weight: 600;
+    padding-top: 4rem;
+}
+
+.send{
+    padding-bottom: 4rem;
+}
+
+.bg-primary{
+    background-color: #6c5db9 !important;
+}
+
+.text-footer, .text-footer a{
+    color: white;
+}
+
+.form-group label{
+    font-size: 20px;
+}
+
+
