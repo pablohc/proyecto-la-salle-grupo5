@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 
+* {
+    font-family: 'Open Sans', sans-serif;
+}
 
 /* Header */
 .no-gutters {
@@ -13,11 +17,11 @@
     height:350px;
 }
 
- .image-container {
+.image-container {
     position: relative;
 }
 
- .text-container {
+.text-container {
     position: absolute;
     top:45%;
     left:5%;
@@ -37,69 +41,26 @@ ul li {
     color:white;
 }
 
+.navbar-toggler:hover   {
+    background-color:white;
+}
+
 
 /*------ MAIN  ------*/
 /* Who we are  */
-
 .whoweare {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: #e7e7e7;
+    background-color:#e7e7e7;
 }
-
-.whoweare-heading {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.whoweare-heading h3 {
-    width: 60%;
-    text-align: center;
-}
-
-.articles-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 30px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.articles-container h3 {
-    margin-bottom: 15px;
-}
-
-.content-left {
-    width: 50%;
-    padding: 20px;
-    border-right: 1px solid grey;
-}
-
 .content-left img {
     float: left;
     padding: 10px 10px 0 0;
 }
 
-.content-right {
-    display: flex;
-    flex-direction: column;
-    width: 50%;
-    padding: 20px;
-    justify-content: space-between;
-}
-
 .content-right img{
     float: right;
-    padding: 0px 0px 0 0;
     width: 50%;
 }
 
-.add {
-    margin: 0 auto;
-}
 
 
 /* Services  */
