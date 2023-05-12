@@ -37,14 +37,14 @@ let showModal = function () {
   let modal = document.querySelector(`[aria-label=navigationHelp]`);
   modal.classList.add(`show`);
   modal.style.display = `block`;
-  modal.style.paddingLeft = 0;
+  // modal.style.paddingLeft = 0;
   modal.innerHTML = modalContent;
 }
 
 let modalContent = `<div class="modal-dialog">
 <div class="modal-content">
   <div class="modal-header">
-    <h5 class="modal-title">Modal title</h5>
+    <h5 class="modal-title">Ayuda</h5>
   </div>
   <div class="modal-body">
     <p>Modal body text goes here.</p>
