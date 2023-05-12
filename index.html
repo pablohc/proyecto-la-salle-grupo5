@@ -8,6 +8,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>My Business Webpage</title>
   <link rel="stylesheet" href="./css/style.css" />
+  <script async type="text/javascript" src="js/enlaces.js"></script>
 </head>
 
 <body>
@@ -18,18 +19,18 @@
     </div>
     <nav>
       <ul>
-        <li><a href="#who">Who We are?</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#location">Location</a></li>
-        <li><a href="#emailus">Email Us</a></li>
+        <li><a class="nav-link" href="#who" data-key="1">Who We are?</a></li>
+        <li><a class="nav-link" href="#services" data-key="2">Services</a></li>
+        <li><a class="nav-link" href="#portfolio" data-key="3">Portfolio</a></li>
+        <li><a class="nav-link" href="#location" data-key="4">Location</a></li>
+        <li><a class="nav-link"href="#emailus" data-key="5">Email Us</a></li>
       </ul>
     </nav>
   </header>
   <!-- Main -->
   <main>
     <!-- Section Who we are -->
-    <section class="whoweare">
+    <section id="who" class="whoweare">
       <div class="whoweare-heading">
         <h2>Who We are?</h2>
         <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perro, quas vitae iusto ad nemo obcaecati tempora
@@ -131,7 +132,7 @@
       <br><br>
     </section>
     <!-- Contact -->
-    <section class="location">
+    <section id="location" class="location">
       <h2>Location</h2>
       <h3 class="find-us">You can find us</h3>
       <div>
@@ -160,7 +161,7 @@
       </div>
     </section>
     <!-- Email Us -->
-    <section class="emailus">
+    <section id="emailus" class="emailus">
       <h2 class="title-email">Email Us</h2>
       <div class="form">
         <form action="./root" method="POST">
