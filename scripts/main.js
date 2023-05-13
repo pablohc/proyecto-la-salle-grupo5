@@ -6,6 +6,12 @@ document.addEventListener("keydown", function (event) {
   // Obtener el valor de la tecla presionada
   var tecla = event.key;
 
+  // Verificar si el elemento con aria-label="navigationHelp" tiene la clase "show"
+  var navigationHelp = document.querySelector('[aria-label="navigationHelp"]');
+  if (navigationHelp && navigationHelp.classList.contains('show')) {
+    return; // Si está presente y tiene la clase "show", se detiene la ejecución del evento keydown
+  }
+
   // Determinar a qué sección se debe desplazar la página
   switch (tecla) {
     case "1":
@@ -31,7 +37,6 @@ document.addEventListener("keydown", function (event) {
       break;
   }
 });
-
 
 let showModal = function () {
   let modal = document.querySelector(`[aria-label=navigationHelp]`);
