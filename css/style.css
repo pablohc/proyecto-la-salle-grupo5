@@ -4,17 +4,23 @@
     font-family: 'Open Sans', sans-serif;
 }
 
-/* Header */
-.no-gutters {
-    margin:0px;
-    padding:0px;
+/* Modal */
+
+.block {
+    display: block;
 }
 
-.header-top img{
+/* Header */
+.no-gutters {
+    margin: 0px;
+    padding: 0px;
+}
+
+.header-top img {
     background-size: cover;
     background-repeat: no-repeat;
-    width:100vw;
-    height:350px;
+    width: 100vw;
+    height: 350px;
 }
 
 .image-container {
@@ -23,40 +29,43 @@
 
 .text-container {
     position: absolute;
-    top:45%;
-    left:5%;
-    color:white;
+    top: 45%;
+    left: 5%;
+    color: white;
 }
 
 /* Navbar */
-.nav {    
-    background-color: rgb(114, 29, 194);    
+.nav {
+    background-color: rgb(114, 29, 194);
     align-items: center;
 }
-ul li {    
-    margin-left:30px;    
-    padding:5px;
-}
-.nav-link {    
-    color:white;
+
+ul li {
+    margin-left: 30px;
+    padding: 5px;
 }
 
-.navbar-toggler:hover   {
-    background-color:white;
+.nav-link {
+    color: white;
+}
+
+.navbar-toggler:hover {
+    background-color: white;
 }
 
 
 /*------ MAIN  ------*/
 /* Who we are  */
 .whoweare {
-    background-color:#e7e7e7;
+    background-color: #e7e7e7;
 }
+
 .content-left img {
     float: left;
     padding: 10px 10px 0 0;
 }
 
-.content-right img{
+.content-right img {
     float: right;
     width: 50%;
 }
@@ -80,26 +89,26 @@ img.service-png:hover {
 }
 
 
-    /* Portfolio */
-    @media screen and (min-width: 1200px) {
-      .rotate-image {
+/* Portfolio */
+@media screen and (min-width: 1200px) {
+    .rotate-image {
         transition-duration: 2s;
         transition: transform .7s ease-in-out;
-      }
+    }
 
-      .rotate-image:hover {
+    .rotate-image:hover {
         transform: rotate(-10deg);
-      }
+    }
 
-      .special-rotate-image {
+    .special-rotate-image {
         transition: all .5s ease-in-out;
-      }
+    }
 
-      .special-rotate-image:hover {
+    .special-rotate-image:hover {
         transform: rotate(360deg);
         border-radius: 50%;
-      }
     }
+}
 
 
 
@@ -139,29 +148,30 @@ img.service-png:hover {
 
 
 
-.title-email{
+.title-email {
     margin-bottom: 3rem;
     font-weight: 600;
     padding-top: 4rem;
 }
 
-.send{
+.send {
     padding-bottom: 4rem;
 }
 
-.bg-primary{
+.bg-primary {
     background-color: #6c5db9 !important;
 }
 
-.text-footer, .text-footer a{
+.text-footer,
+.text-footer a {
     color: white;
 }
 
-.form-group label{
+.form-group label {
     font-size: 20px;
     color: white;
 }
-.title-email{
+
+.title-email {
     color: white;
 }
-

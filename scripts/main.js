@@ -8,7 +8,7 @@ document.addEventListener("keydown", function (event) {
 
   // Verificar si el elemento con aria-label="navigationHelp" tiene la clase "show"
   var navigationHelp = document.querySelector('[aria-label="navigationHelp"]');
-  if (navigationHelp && navigationHelp.classList.contains('show')) {
+  if ((navigationHelp && navigationHelp.classList.contains('show')) && tecla != "Escape") {
     return; // Si está presente y tiene la clase "show", se detiene la ejecución del evento keydown
   }
 
@@ -32,6 +32,10 @@ document.addEventListener("keydown", function (event) {
     case "h":
       showModal();
       break;
+    case "Escape":
+      hideModal();
+      console.log(tecla);
+      break;
     default:
       console.log(tecla);
       break;
@@ -40,10 +44,13 @@ document.addEventListener("keydown", function (event) {
 
 let showModal = function () {
   let modal = document.querySelector(`[aria-label=navigationHelp]`);
-  modal.classList.add(`show`);
-  modal.style.display = `block`;
-  // modal.style.paddingLeft = 0;
+  modal.classList.add(`show`, `block`);
   modal.innerHTML = modalContent;
+}
+
+let hideModal = function () {
+  let modal = document.querySelector(`[aria-label=navigationHelp]`);
+  modal.classList.remove(`show`, `block`);
 }
 
 let modalContent = `<div class="modal-dialog">
