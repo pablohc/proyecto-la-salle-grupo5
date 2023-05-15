@@ -29,7 +29,7 @@ document.addEventListener("keydown", function (event) {
     case "5":
       window.location = "#emailus";
       break;
-    case "h":
+    case "?":
       showModal();
       break;
     case "Escape":
