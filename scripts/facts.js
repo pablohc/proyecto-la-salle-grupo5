@@ -2,7 +2,12 @@ const url = "https://catfact.ninja/fact";
 const div = document.querySelector('#cats-facts');
 const arrowLeft = document.querySelector('#arrow-left');
 const arrowRight = document.querySelector('#arrow-right');
-
+div.parentElement.addEventListener('slid.bs.carousel', async function (evento) {
+    const texto = await loadFact();
+    evento.relatedTarget.parentElement.children[evento.from].innerText = texto;
+    console.log(evento)
+  })
+  
 async function loadFact() {
     const resp = await fetch(url);
     const json = await resp.json();
@@ -12,6 +17,7 @@ async function loadFact() {
 async function showFact() {
     const fact = await loadFact();
     const article = document.createElement("article");
+    article.classList.add(`carousel-item`);
     article.innerText = fact;
     div.appendChild(article);
 }
@@ -39,7 +45,4 @@ async function changeArticle(direction) {
         }
     }
 }
-
-setInterval(showFact, 5000);
-setTimeout(() => setInterval(cleanupOne, 5000), 10000);
 

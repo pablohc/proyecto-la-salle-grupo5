@@ -59,10 +59,38 @@
   <main>
     
       <section id="marquesina" class="col-12 d-flex flex-wrap justify-content-evenly">
-        <button id="arrow-left"><kbd class="arrow-style col-1"><-</kbd></button>
-        <div id="cats-facts" class="col-10"></div>
-        <button id="arrow-right"><kbd class="arrow-style col-1">-></kbd></button>
+  
+        <div class="col-10 d-flex carousel slide" data-bs-ride="carousel">
+          <div id="cats-facts" class="carousel-inner">
+            <div class="carousel-item active">
+              Hola Gente
+            </div>
+            <div class="carousel-item"> 
+              Hola Mundo
+            </div>
+          </div>
+        </div>
+    
       </section>
+      <!-- <section id="marquesina"> 
+        <div id="cats-facts" class="carousel slide carousel-fade" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+            </div>
+            <div class="carousel-item">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#cats-facts" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#cats-facts" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </section> -->
+
     <!-- Section Who we are -->
     <section class="whoweare col-12" id="who">
       <div class="whoweare-heading col-12 d-flex flex-column align-items-center">
