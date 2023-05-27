@@ -37,9 +37,61 @@ document.addEventListener("keydown", function (event) {
       console.log(tecla);
       break;
     default:
-      console.log(tecla);
+      console.log("nav", tecla);
       break;
   }
+});
+
+document.addEventListener("DOMContentLoaded", function () {
+  const sections = document.querySelectorAll("section");
+  let currentSectionIndex = 0;
+
+  function updateActiveSection() {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const viewportOffset = window.innerHeight / 2;
+    let closestSection = sections[ 0 ];
+    let closestDistance = Math.abs(scrollTop - closestSection.getBoundingClientRect().top - viewportOffset);
+
+    sections.forEach((section, index) => {
+      const distance = Math.abs(scrollTop - section.getBoundingClientRect().top - viewportOffset);
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestSection = section;
+        currentSectionIndex = index;
+      }
+    });
+
+    sections.forEach(section => {
+      section.classList.remove("active");
+    });
+
+    closestSection.classList.add("active");
+    console.log(currentSectionIndex);
+  }
+
+  function scrollToSection(index) {
+    if (index < 0 || index >= sections.length) {
+      return;
+    }
+    console.log("nombre fun", index, sections[ index ]);
+    sections[ index ].scrollIntoView({ behavior: "smooth" });
+  }
+
+  window.addEventListener("scroll", updateActiveSection);
+  window.addEventListener("resize", updateActiveSection);
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "p" || event.key === "P") {
+      event.preventDefault();
+      console.log("prev section: ", currentSectionIndex);
+      scrollToSection(currentSectionIndex - 1);
+    } else if (event.key === "n" || event.key === "N") {
+      event.preventDefault();
+      console.log("next section: ", currentSectionIndex);
+      scrollToSection(currentSectionIndex + 1);
+    }
+  });
+
+  updateActiveSection();
 });
 
 let showModal = function () {
