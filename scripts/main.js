@@ -43,55 +43,64 @@ document.addEventListener("keydown", function (event) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  const sections = document.querySelectorAll("section");
+  // Colocar todas las secciones en un array
+  let sections = Array.from(document.getElementsByTagName('section'));
   let currentSectionIndex = 0;
 
-  function updateActiveSection() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const viewportOffset = window.innerHeight / 2;
-    let closestSection = sections[ 0 ];
-    let closestDistance = Math.abs(scrollTop - closestSection.getBoundingClientRect().top - viewportOffset);
+  // Detectar las secciones en el viewport
+  function getVisibleSections() {
+    let visibleSections = sections.filter((section, i) => {
+        let rect = section.getBoundingClientRect();
+        return rect.top < window.innerHeight && rect.bottom >= 0;
+    });
+    return visibleSections;
+  }
 
-    sections.forEach((section, index) => {
-      const distance = Math.abs(scrollTop - section.getBoundingClientRect().top - viewportOffset);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestSection = section;
-        currentSectionIndex = index;
+  // Función para ir a la siguiente sección
+  function nextSection() {
+    let nextSectionIndex = currentSectionIndex + 1;
+    if(nextSectionIndex < sections.length){
+        sections[nextSectionIndex].scrollIntoView({ behavior: 'smooth' });
+        currentSectionIndex = nextSectionIndex;
+    }
+  }
+
+  // Función para ir a la sección anterior
+  function prevSection() {
+    let prevSectionIndex = currentSectionIndex - 1;
+    if(prevSectionIndex >= 0){
+        sections[prevSectionIndex].scrollIntoView({ behavior: 'smooth' });
+        currentSectionIndex = prevSectionIndex;
+    }
+  }
+
+  // Escuchar las teclas 'N' y 'P'
+  document.addEventListener('keydown', (e) => {
+      switch(e.key.toLowerCase()) {
+          case 'n':
+              nextSection();
+              break;
+          case 'p':
+              prevSection();
+              break;
       }
-    });
-
-    sections.forEach(section => {
-      section.classList.remove("active");
-    });
-
-    closestSection.classList.add("active");
-    console.log(currentSectionIndex);
-  }
-
-  function scrollToSection(index) {
-    if (index < 0 || index >= sections.length) {
-      return;
-    }
-    console.log("nombre fun", index, sections[ index ]);
-    sections[ index ].scrollIntoView({ behavior: "smooth" });
-  }
-
-  window.addEventListener("scroll", updateActiveSection);
-  window.addEventListener("resize", updateActiveSection);
-  window.addEventListener("keydown", function (event) {
-    if (event.key === "p" || event.key === "P") {
-      event.preventDefault();
-      console.log("prev section: ", currentSectionIndex);
-      scrollToSection(currentSectionIndex - 1);
-    } else if (event.key === "n" || event.key === "N") {
-      event.preventDefault();
-      console.log("next section: ", currentSectionIndex);
-      scrollToSection(currentSectionIndex + 1);
-    }
   });
 
-  updateActiveSection();
+  // Actualizar la sección actual basándose en las secciones visibles
+  function updateCurrentSection() {
+    let visibleSections = getVisibleSections();
+    if(visibleSections.length > 0){
+        // Aquí se asume que la sección más relevante es la primera visible, pero puedes ajustarlo a tus necesidades
+        let mostRelevantSection = visibleSections[0];
+        currentSectionIndex = sections.indexOf(mostRelevantSection);
+    }
+  }
+
+  // Escuchar el evento de scroll y actualizar la sección actual
+  window.addEventListener('scroll', updateCurrentSection);
+
+  // Escuchar el evento de resize y actualizar la sección actual
+  window.addEventListener('resize', updateCurrentSection);
 });
 
 let showModal = function () {
