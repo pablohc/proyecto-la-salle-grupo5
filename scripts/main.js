@@ -42,56 +42,109 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
+// document.addEventListener('scroll', function () {
+//   var sections = document.querySelectorAll('section');
+//   var viewportTop = window.pageYOffset; // Posición superior del viewport
+
+//   for (var i = 0; i < sections.length; i++) {
+//     var sectionTop = sections[ i ].offsetTop; // Posición superior de la sección
+
+//     if (sectionTop <= viewportTop && viewportTop < sectionTop + sections[ i ].offsetHeight) {
+//       setActiveSection(sections[ i ]);
+//       break;
+//     }
+//   }
+// });
+
+// function setActiveSection(section) {
+//   var activeSection = document.querySelector('.active');
+//   if (activeSection) {
+//     activeSection.classList.remove('active');
+//   }
+//   section.classList.add('active');
+// }
+
+// document.addEventListener('keydown', function (event) {
+//   if (event.key === 'n') {
+//     event.preventDefault();
+//     navigateToNextSection();
+//   } else if (event.key === 'p') {
+//     event.preventDefault();
+//     navigateToPreviousSection();
+//   }
+// });
+
+// function navigateToNextSection() {
+//   var activeSection = document.querySelector('.active');
+//   var nextSection = activeSection.nextElementSibling;
+
+//   if (nextSection && nextSection.tagName === 'SECTION') {
+//     nextSection.scrollIntoView({ behavior: 'smooth' });
+//     setActiveSection(nextSection);
+//   }
+// }
+
+// function navigateToPreviousSection() {
+//   var activeSection = document.querySelector('.active');
+//   var previousSection = activeSection.previousElementSibling;
+
+//   if (previousSection && previousSection.tagName === 'SECTION') {
+//     previousSection.scrollIntoView({ behavior: 'smooth' });
+//     setActiveSection(previousSection);
+//   }
+// }
 document.addEventListener("DOMContentLoaded", function () {
-  const sections = document.querySelectorAll("section");
-  let currentSectionIndex = 0;
+  document.addEventListener('scroll', function () {
+    var sections = document.querySelectorAll('section');
+    var viewportTop = window.pageYOffset; // Posición superior del viewport
 
-  function updateActiveSection() {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const viewportOffset = window.innerHeight / 2;
-    let closestSection = sections[ 0 ];
-    let closestDistance = Math.abs(scrollTop - closestSection.getBoundingClientRect().top - viewportOffset);
+    for (var i = 0; i < sections.length; i++) {
+      var sectionTop = sections[ i ].offsetTop; // Posición superior de la sección
 
-    sections.forEach((section, index) => {
-      const distance = Math.abs(scrollTop - section.getBoundingClientRect().top - viewportOffset);
-      if (distance < closestDistance) {
-        closestDistance = distance;
-        closestSection = section;
-        currentSectionIndex = index;
+      if (sectionTop <= viewportTop && viewportTop < sectionTop + sections[ i ].offsetHeight) {
+        setActiveSection(sections[ i ]);
+        break;
       }
-    });
-
-    sections.forEach(section => {
-      section.classList.remove("active");
-    });
-
-    closestSection.classList.add("active");
-    console.log(currentSectionIndex);
-  }
-
-  function scrollToSection(index) {
-    if (index < 0 || index >= sections.length) {
-      return;
-    }
-    console.log("nombre fun", index, sections[ index ]);
-    sections[ index ].scrollIntoView({ behavior: "smooth" });
-  }
-
-  window.addEventListener("scroll", updateActiveSection);
-  window.addEventListener("resize", updateActiveSection);
-  window.addEventListener("keydown", function (event) {
-    if (event.key === "p" || event.key === "P") {
-      event.preventDefault();
-      console.log("prev section: ", currentSectionIndex);
-      scrollToSection(currentSectionIndex - 1);
-    } else if (event.key === "n" || event.key === "N") {
-      event.preventDefault();
-      console.log("next section: ", currentSectionIndex);
-      scrollToSection(currentSectionIndex + 1);
     }
   });
 
-  updateActiveSection();
+  function setActiveSection(section) {
+    var activeSection = document.querySelector('.active');
+    if (activeSection) {
+      activeSection.classList.remove('active');
+    }
+    section.classList.add('active');
+  }
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'n') {
+      event.preventDefault();
+      navigateToNextSection();
+    } else if (event.key === 'p') {
+      event.preventDefault();
+      navigateToPreviousSection();
+    }
+  });
+
+  function navigateToNextSection() {
+    var activeSection = document.querySelector('.active');
+    var nextSection = activeSection.nextElementSibling;
+
+    if (nextSection && nextSection.tagName === 'SECTION') {
+      nextSection.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(nextSection);
+    }
+  }
+
+  function navigateToPreviousSection() {
+    var activeSection = document.querySelector('.active');
+    var previousSection = activeSection.previousElementSibling;
+
+    if (previousSection && previousSection.tagName === 'SECTION') {
+      previousSection.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(previousSection);
+    }
+  }
 });
 
 let showModal = function () {
