@@ -42,111 +42,6 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-// document.addEventListener('scroll', function () {
-//   var sections = document.querySelectorAll('section');
-//   var viewportTop = window.pageYOffset; // Posición superior del viewport
-
-//   for (var i = 0; i < sections.length; i++) {
-//     var sectionTop = sections[ i ].offsetTop; // Posición superior de la sección
-
-//     if (sectionTop <= viewportTop && viewportTop < sectionTop + sections[ i ].offsetHeight) {
-//       setActiveSection(sections[ i ]);
-//       break;
-//     }
-//   }
-// });
-
-// function setActiveSection(section) {
-//   var activeSection = document.querySelector('.active');
-//   if (activeSection) {
-//     activeSection.classList.remove('active');
-//   }
-//   section.classList.add('active');
-// }
-
-// document.addEventListener('keydown', function (event) {
-//   if (event.key === 'n') {
-//     event.preventDefault();
-//     navigateToNextSection();
-//   } else if (event.key === 'p') {
-//     event.preventDefault();
-//     navigateToPreviousSection();
-//   }
-// });
-
-// function navigateToNextSection() {
-//   var activeSection = document.querySelector('.active');
-//   var nextSection = activeSection.nextElementSibling;
-
-//   if (nextSection && nextSection.tagName === 'SECTION') {
-//     nextSection.scrollIntoView({ behavior: 'smooth' });
-//     setActiveSection(nextSection);
-//   }
-// }
-
-// function navigateToPreviousSection() {
-//   var activeSection = document.querySelector('.active');
-//   var previousSection = activeSection.previousElementSibling;
-
-//   if (previousSection && previousSection.tagName === 'SECTION') {
-//     previousSection.scrollIntoView({ behavior: 'smooth' });
-//     setActiveSection(previousSection);
-//   }
-// }
-document.addEventListener("DOMContentLoaded", function () {
-  document.addEventListener('scroll', function () {
-    var sections = document.querySelectorAll('section');
-    var viewportTop = window.pageYOffset; // Posición superior del viewport
-
-    for (var i = 0; i < sections.length; i++) {
-      var sectionTop = sections[ i ].offsetTop; // Posición superior de la sección
-
-      if (sectionTop <= viewportTop && viewportTop < sectionTop + sections[ i ].offsetHeight) {
-        setActiveSection(sections[ i ]);
-        break;
-      }
-    }
-  });
-
-  function setActiveSection(section) {
-    var activeSection = document.querySelector('.active');
-    if (activeSection) {
-      activeSection.classList.remove('active');
-    }
-    section.classList.add('active');
-  }
-
-  document.addEventListener('keydown', function (event) {
-    if (event.key === 'n') {
-      event.preventDefault();
-      navigateToNextSection();
-    } else if (event.key === 'p') {
-      event.preventDefault();
-      navigateToPreviousSection();
-    }
-  });
-
-  function navigateToNextSection() {
-    var activeSection = document.querySelector('.active');
-    var nextSection = activeSection.nextElementSibling;
-
-    if (nextSection && nextSection.tagName === 'SECTION') {
-      nextSection.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(nextSection);
-    }
-  }
-
-  function navigateToPreviousSection() {
-    var activeSection = document.querySelector('.active');
-    var previousSection = activeSection.previousElementSibling;
-
-    if (previousSection && previousSection.tagName === 'SECTION') {
-      previousSection.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(previousSection);
-    }
-  }
-});
-
 let showModal = function () {
   let modal = document.querySelector(`[aria-label=navigationHelp]`);
   modal.classList.add(`show`, `block`);
@@ -259,3 +154,61 @@ let modalContent = `<div class="modal-dialog">
     </div>
   </div>
 </div>`
+
+
+// Esperar a que el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", function () {
+  var secciones = [ "header", "who", "services", "portfolio", "location", "emailus" ];
+  var indiceActual = 0;
+
+  // Función para actualizar el índice actual basado en la sección visible en el área de visualización
+  function actualizarIndiceActual() {
+    for (var i = 0; i < secciones.length; i++) {
+      var seccion = document.getElementById(secciones[ i ]);
+      var rect = seccion.getBoundingClientRect();
+      if (rect.top >= 0 && rect.top <= window.innerHeight) {
+        indiceActual = i;
+        break;
+      }
+    }
+  }
+
+  // Función para desplazarse a la sección siguiente
+  function irSiguienteSeccion() {
+    if (indiceActual < secciones.length - 1) {
+      indiceActual++;
+      var seccionSiguiente = document.getElementById(secciones[ indiceActual ]);
+      seccionSiguiente.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Función para desplazarse a la sección anterior
+  function irSeccionAnterior() {
+    if (indiceActual > 0) {
+      indiceActual--;
+      var seccionAnterior = document.getElementById(secciones[ indiceActual ]);
+      seccionAnterior.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Escuchar el evento de tecla presionada
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "n") {
+      // Tecla "n" para ir a la siguiente sección
+      irSiguienteSeccion();
+    } else if (event.key === "p") {
+      // Tecla "p" para ir a la sección anterior
+      irSeccionAnterior();
+    }
+  });
+
+  // Escuchar el evento de scroll
+  window.addEventListener("scroll", function () {
+    // Actualizar el índice actual basado en la sección visible en el área de visualización
+    actualizarIndiceActual();
+  });
+
+  // Desplazarse a la primera sección (header) al cargar la página
+  var header = document.getElementById("header");
+  header.scrollIntoView({ behavior: 'auto', block: 'start' });
+});
