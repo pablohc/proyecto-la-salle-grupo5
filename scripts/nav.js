@@ -167,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let seccion = document.getElementById(secciones[ i ]);
       let rect = seccion.getBoundingClientRect();
       if ((rect.top >= 0) && (rect.top <= document)) {
+        //revisar
         indiceActual = i;
         break;
       }
