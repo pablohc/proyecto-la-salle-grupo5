@@ -166,12 +166,14 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = 0; i < secciones.length; i++) {
       let seccion = document.getElementById(secciones[ i ]);
       let rect = seccion.getBoundingClientRect();
-      if ((rect.top >= 0) && (rect.top <= document)) {
+      if ((rect.top <= 0) && (rect.top <= document)) {
         //revisar
-        indiceActual = i;
+        indiceActual = seccion;
         break;
       }
-      console.log("rect.top: ", rect.top, "window.innerHeight: ", window.innerHeight);
+      console.log(seccion);
+      console.log(rect.top);
+      console.log(rect.bottom);
     }
     console.log("Sección anterior:", secciones[ indiceActual - 1 ] || "N/A");
     console.log("Sección actual:", secciones[ indiceActual ]);
