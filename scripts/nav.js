@@ -4,10 +4,10 @@ window.location = "#id-de-la-seccion"*/
 
 document.addEventListener("keydown", function (event) {
   // Obtener el valor de la tecla presionada
-  var tecla = event.key;
+  let tecla = event.key;
 
   // Verificar si el elemento con aria-label="navigationHelp" tiene la clase "show"
-  var navigationHelp = document.querySelector('[aria-label="navigationHelp"]');
+  let navigationHelp = document.querySelector('[aria-label="navigationHelp"]');
   if ((navigationHelp && navigationHelp.classList.contains('show')) && tecla != "Escape") {
     return; // Si está presente y tiene la clase "show", se detiene la ejecución del evento keydown
   }
@@ -158,57 +158,55 @@ let modalContent = `<div class="modal-dialog">
 
 // Esperar a que el DOM esté completamente cargado
 document.addEventListener("DOMContentLoaded", function () {
-  var secciones = [ "header", "who", "services", "portfolio", "location", "emailus" ];
-  var indiceActual = 0;
+  let secciones = [ "header", "who", "services", "portfolio", "location", "emailus" ];
+  let indiceActual = 0;
 
-  // Función para actualizar el índice actual basado en la sección visible en el área de visualización
+  // Actualiza índice actual sección en el viewport
   function actualizarIndiceActual() {
-    for (var i = 0; i < secciones.length; i++) {
-      var seccion = document.getElementById(secciones[ i ]);
-      var rect = seccion.getBoundingClientRect();
-      if (rect.top >= 0 && rect.top <= window.innerHeight) {
+    for (let i = 0; i < secciones.length; i++) {
+      let seccion = document.getElementById(secciones[ i ]);
+      let rect = seccion.getBoundingClientRect();
+      if ((rect.top >= 0) && (rect.top <= document)) {
         indiceActual = i;
         break;
       }
+      console.log("rect.top: ", rect.top, "window.innerHeight: ", window.innerHeight);
     }
+    console.log("Sección anterior:", secciones[ indiceActual - 1 ] || "N/A");
+    console.log("Sección actual:", secciones[ indiceActual ]);
+    console.log("Sección siguiente:", secciones[ indiceActual + 1 ] || "N/A");
   }
 
-  // Función para desplazarse a la sección siguiente
   function irSiguienteSeccion() {
     if (indiceActual < secciones.length - 1) {
       indiceActual++;
-      var seccionSiguiente = document.getElementById(secciones[ indiceActual ]);
-      seccionSiguiente.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      let seccionSiguiente = document.getElementById(secciones[ indiceActual ]);
+      seccionSiguiente.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
 
-  // Función para desplazarse a la sección anterior
   function irSeccionAnterior() {
     if (indiceActual > 0) {
       indiceActual--;
-      var seccionAnterior = document.getElementById(secciones[ indiceActual ]);
-      seccionAnterior.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      let seccionAnterior = document.getElementById(secciones[ indiceActual ]);
+      seccionAnterior.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }
 
   // Escuchar el evento de tecla presionada
   document.addEventListener("keydown", function (event) {
     if (event.key === "n") {
-      // Tecla "n" para ir a la siguiente sección
       irSiguienteSeccion();
     } else if (event.key === "p") {
-      // Tecla "p" para ir a la sección anterior
       irSeccionAnterior();
     }
   });
 
-  // Escuchar el evento de scroll
-  window.addEventListener("scroll", function () {
-    // Actualizar el índice actual basado en la sección visible en el área de visualización
+  document.addEventListener("scroll", function () {
     actualizarIndiceActual();
   });
 
   // Desplazarse a la primera sección (header) al cargar la página
-  var header = document.getElementById("header");
-  header.scrollIntoView({ behavior: 'auto', block: 'start' });
+  let header = document.getElementById("header");
+  header.scrollIntoView({ behavior: "auto", block: "start" });
 });
