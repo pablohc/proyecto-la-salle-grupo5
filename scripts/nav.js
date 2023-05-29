@@ -161,42 +161,34 @@ document.addEventListener("DOMContentLoaded", function () {
   let secciones = [ "header", "who", "services", "portfolio", "location", "emailus" ];
   let indiceActual = 0;
 
-  // Actualiza índice actual sección en el viewport
+  // SECCION ACTUAL = BOTTOM es mayor a 0 y TOP es menor al ALTO de la sección
   function actualizarIndiceActual() {
     for (let i = 0; i < secciones.length; i++) {
       let seccion = document.getElementById(secciones[ i ]);
       let rect = seccion.getBoundingClientRect();
-      if ((rect.top <= 0) && (rect.top <= document)) {
-        //revisar
-        indiceActual = seccion;
+      if ((rect.bottom > 0) && ((rect.top * (-1)) < rect.height)) {
+        indiceActual = i;
         break;
       }
-      console.log(seccion);
-      console.log(rect.top);
-      console.log(rect.bottom);
     }
-    console.log("Sección anterior:", secciones[ indiceActual - 1 ] || "N/A");
-    console.log("Sección actual:", secciones[ indiceActual ]);
-    console.log("Sección siguiente:", secciones[ indiceActual + 1 ] || "N/A");
   }
 
   function irSiguienteSeccion() {
-    if (indiceActual < secciones.length - 1) {
+    if (indiceActual >= 0 && indiceActual < (secciones.length - 1)) {
       indiceActual++;
       let seccionSiguiente = document.getElementById(secciones[ indiceActual ]);
-      seccionSiguiente.scrollIntoView({ behavior: "smooth", block: "start" });
+      seccionSiguiente.scrollIntoView({ behavior: "auto", block: "start" });
     }
   }
 
   function irSeccionAnterior() {
-    if (indiceActual > 0) {
+    if (indiceActual > 0 && indiceActual < (secciones.length)) {
       indiceActual--;
       let seccionAnterior = document.getElementById(secciones[ indiceActual ]);
-      seccionAnterior.scrollIntoView({ behavior: "smooth", block: "start" });
+      seccionAnterior.scrollIntoView({ behavior: "auto", block: "start" });
     }
   }
 
-  // Escuchar el evento de tecla presionada
   document.addEventListener("keydown", function (event) {
     if (event.key === "n") {
       irSiguienteSeccion();
