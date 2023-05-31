@@ -43,65 +43,108 @@ document.addEventListener("keydown", function (event) {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  // Colocar todas las secciones en un array
-  let sections = Array.from(document.getElementsByTagName('section'));
-  let currentSectionIndex = 0;
+  // Colocar todos los títulos h2 en un array
+  let titles = Array.from(document.querySelectorAll('section h2'));
+  let currentTitleIndex = 0;
+  let pageLoaded = false;
 
-  // Detectar las secciones en el viewport
-  function getVisibleSections() {
-    let visibleSections = sections.filter((section, i) => {
-        let rect = section.getBoundingClientRect();
-        return rect.top < window.innerHeight && rect.bottom >= 0;
+  // Detectar los títulos en el viewport
+  function getVisibleTitles() {
+    return titles.filter((title) => {
+      let rect = title.getBoundingClientRect();
+      return rect.top < window.innerHeight && rect.bottom >= 0;
     });
-    return visibleSections;
   }
 
-  // Función para ir a la siguiente sección
-  function nextSection() {
-    let nextSectionIndex = currentSectionIndex + 1;
-    if(nextSectionIndex < sections.length){
-        sections[nextSectionIndex].scrollIntoView({ behavior: 'smooth' });
-        currentSectionIndex = nextSectionIndex;
+  // Función para ir al siguiente título
+  function nextTitle() {
+    let visibleTitles = getVisibleTitles();
+    let currentVisibleTitle = visibleTitles.find(title => title === titles[currentTitleIndex]);
+
+    // Si el título actual está alineado con la parte superior del viewport y hay un segundo título visible
+    if (currentVisibleTitle && currentVisibleTitle.getBoundingClientRect().top === 0 && visibleTitles.length > 1) {
+      let nextVisibleTitleIndex = visibleTitles.findIndex(title => title !== currentVisibleTitle);
+      if (nextVisibleTitleIndex !== -1) {
+        let nextVisibleTitle = visibleTitles[nextVisibleTitleIndex];
+        nextVisibleTitle.scrollIntoView({ block: 'start', behavior: 'smooth' });
+        currentTitleIndex = titles.indexOf(nextVisibleTitle);
+        return;
+      }
+    }
+
+    // Alinear el título actual al principio del viewport
+    titles[currentTitleIndex].scrollIntoView({ block: 'start', behavior: 'smooth' });
+
+    // Si no se cumple la condición anterior, pasamos al siguiente título en el array
+    let nextTitleIndex = currentTitleIndex + 1;
+    if (nextTitleIndex < titles.length) {
+      currentTitleIndex = nextTitleIndex;
+    } else {
+      currentTitleIndex = 0; // Volvemos al primer título si estamos en el último
     }
   }
 
-  // Función para ir a la sección anterior
-  function prevSection() {
-    let prevSectionIndex = currentSectionIndex - 1;
-    if(prevSectionIndex >= 0){
-        sections[prevSectionIndex].scrollIntoView({ behavior: 'smooth' });
-        currentSectionIndex = prevSectionIndex;
+  // Función para ir al título anterior
+  function prevTitle() {
+    let prevTitleIndex = currentTitleIndex - 1;
+    if (prevTitleIndex >= 0) {
+      currentTitleIndex = prevTitleIndex;
+      titles[currentTitleIndex].scrollIntoView({ block: 'start', behavior: 'smooth' });
+    } else {
+      currentTitleIndex = titles.length - 1; // Saltamos al último título si estamos en el primero
+      titles[currentTitleIndex].scrollIntoView({ block: 'start', behavior: 'smooth' });
     }
   }
 
   // Escuchar las teclas 'N' y 'P'
   document.addEventListener('keydown', (e) => {
-      switch(e.key.toLowerCase()) {
-          case 'n':
-              nextSection();
-              break;
-          case 'p':
-              prevSection();
-              break;
-      }
+    switch (e.key.toLowerCase()) {
+      case 'n':
+        nextTitle();
+        break;
+      case 'p':
+        prevTitle();
+        break;
+    }
   });
 
-  // Actualizar la sección actual basándose en las secciones visibles
-  function updateCurrentSection() {
-    let visibleSections = getVisibleSections();
-    if(visibleSections.length > 0){
-        // Aquí se asume que la sección más relevante es la primera visible, pero puedes ajustarlo a tus necesidades
-        let mostRelevantSection = visibleSections[0];
-        currentSectionIndex = sections.indexOf(mostRelevantSection);
+  // Alinear el primer título visible al cargar la página
+  window.addEventListener('load', () => {
+    pageLoaded = true;
+    let visibleTitles = getVisibleTitles();
+    if (visibleTitles.length > 0) {
+      let firstVisibleTitle = visibleTitles[0];
+      if (firstVisibleTitle.getBoundingClientRect().top === 0) {
+        currentTitleIndex = titles.indexOf(firstVisibleTitle);
+      }
+    }
+  });
+
+  // Actualizar el título actual basándose en los títulos visibles
+  function updateCurrentTitle() {
+    if (!pageLoaded) {
+      return;
+    }
+
+    let visibleTitles = getVisibleTitles();
+    if (visibleTitles.length > 0) {
+      let currentVisibleTitle = visibleTitles.find(title => title === titles[currentTitleIndex]);
+      if (!currentVisibleTitle) {
+        currentTitleIndex = titles.indexOf(visibleTitles[0]);
+      }
     }
   }
 
-  // Escuchar el evento de scroll y actualizar la sección actual
-  window.addEventListener('scroll', updateCurrentSection);
+  // Escuchar el evento de scroll y actualizar el título actual
+  window.addEventListener('scroll', updateCurrentTitle);
 
-  // Escuchar el evento de resize y actualizar la sección actual
-  window.addEventListener('resize', updateCurrentSection);
+  // Escuchar el evento de resize y actualizar el título actual
+  window.addEventListener('resize', updateCurrentTitle);
 });
+
+
+
+
 
 let showModal = function () {
   let modal = document.querySelector(`[aria-label=navigationHelp]`);
