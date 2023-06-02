@@ -1,39 +1,62 @@
 const myQuery = `
-query metros ($cursor:String) {
-    metroStations(first:2 after:$cursor){
-        edges {
-            node {
-                name
-                coordinates {
-                    latitude
-                    longitude
-                }
+query metros ($latitude: Float!, $longitude: Float!) {
+    metroStation(findBy: { closest: { latitude: $latitude, longitude: $longitude }}){
+        ...on MetroStation {
+            name
+            coordinates {
+                latitude
+                longitude
             }
-        }
-        pageInfo {
-            hasNextPage
-            endCursor
         }
     }
 }
-`
+`;
 
-const url = new URL("https://barcelona-urban-mobility-graphql-api.netlify.app/graphql")
-const myVar = { cursor: null }
-url.searchParams.set("query", myQuery)
-url.searchParams.set("variables", JSON.stringify(myVar))
-url.searchParams.set("operationName", "metros")
-const response = await fetch(url)
-const nameStation = await response.json()
-for (const station of nameStation.data.metroStations.edges) {
-    console.log(station.node.name)
+const url = "https://healthy-fox-82.deno.dev/graphql";
+
+const options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0,
+};
+  
+async function success(pos) {
+    const crd = pos.coords;
+    
+    const myVar = { latitude: crd.latitude, longitude: crd.longitude };
+    console.log(myVar);
+
+    async function fetchData() {
+        const response = await fetch(url, {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ query: myQuery, variables: myVar, operationName: "metros" })
+        })
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+    
+        const text = await response.text();
+        if (!text) {
+            throw new Error('No response text');
+        }
+        
+        try {
+            const nameStation = JSON.parse(text);
+            console.log(nameStation);
+            
+        } catch (error) {
+            console.error('Invalid JSON:', text);
+            console.error('Parse Error:', error);
+        }
+       
+    }
+
+    fetchData();
 }
 
-const nextPage = nameStation.data.metroStations.pageInfo.endCursor
-myVar.cursor = nextPage
-url.searchParams.set("variables", JSON.stringify(myVar))
-const response2 = await fetch(url)
-const dataStation = await response2.json()
-for (const station of dataStation.data.metroStations.edges) {
-    console.log(station)
+function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
 }
+
+navigator.geolocation.getCurrentPosition(success, error, options);
