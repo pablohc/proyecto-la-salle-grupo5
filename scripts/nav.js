@@ -201,6 +201,10 @@ document.addEventListener("DOMContentLoaded", function () {
     actualizarIndiceActual();
   });
 
+  document.addEventListener("resize", function () {
+    actualizarIndiceActual();
+  });
+
   // Desplazarse a la primera sección (header) al cargar la página
   let header = document.getElementById("header");
   header.scrollIntoView({ behavior: "auto", block: "start" });
