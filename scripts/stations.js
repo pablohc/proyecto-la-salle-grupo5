@@ -13,16 +13,16 @@ query metros ($latitude: Float!, $longitude: Float!) {
 `;
 
 const url = "https://healthy-fox-82.deno.dev/graphql";
-
+let nameStation;
 const options = {
     enableHighAccuracy: true,
     timeout: 5000,
     maximumAge: 0,
 };
-  
+
 async function success(pos) {
     const crd = pos.coords;
-    
+
     const myVar = { latitude: crd.latitude, longitude: crd.longitude };
     console.log(myVar);
 
@@ -35,21 +35,21 @@ async function success(pos) {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-    
+
         const text = await response.text();
         if (!text) {
             throw new Error('No response text');
         }
-        
+
         try {
-            const nameStation = JSON.parse(text);
+            nameStation = JSON.parse(text);
             console.log(nameStation);
-            
+            showStation();
         } catch (error) {
             console.error('Invalid JSON:', text);
             console.error('Parse Error:', error);
         }
-       
+
     }
 
     fetchData();
@@ -60,3 +60,10 @@ function error(err) {
 }
 
 navigator.geolocation.getCurrentPosition(success, error, options);
+
+function showStation() {
+    const station = document.querySelector('#station');
+    const article = document.createElement("article");
+    article.innerText = nameStation.data.metroStation.name;
+    station.appendChild(article);
+}
