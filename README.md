@@ -1,7 +1,13 @@
 # proyecto-la-salle
 
 ## Visita el site del proyecto
-https://pablohc.github.io/proyecto-la-salle-grupo5/ 
+
+https://pablohc.github.io/proyecto-la-salle-grupo5/
+
+## Visita el site del proyecto
+
+Presentación del proyecto:
+[presentacion](/assets/presentacion.pdf)
 
 # Comandos de git
 
@@ -10,26 +16,28 @@ https://pablohc.github.io/proyecto-la-salle-grupo5/
 git init
 
 ## Ignorar ficheros
+
 Editar el fichero para añadir las extensiones o ficheros que no queremos que se registren en el git
 
 cat .gitignore
 
-
 ## Guardar los cambios de un archivo html en el repositorio
+
 ### Afegir fitxers
 
-git add *.html  
-git add README  
+git add \*.html  
+git add README
 
 ### commit
+
 git commit -m 'initial project version'
 
 ## Inspeccionar un repositorio
+
 git status
 git log
 
-
-## Hacer stash  de los cambios del espacio de trabajo.
+## Hacer stash de los cambios del espacio de trabajo.
 
 git stash
 
@@ -48,19 +56,18 @@ git checkout -D "nombre de rama"
 ## git en el servidor
 
 git clone  
-git fork  
+git fork
 
 # Sincronizarse
 
-git remote   
+git remote  
 git fetch  
 git pull  
-git push  
+git push
 
 # Ver listado de repositorios remotos
 
-git remote -v  
-
+git remote -v
 
 ## Canal de Discord del curso
 
