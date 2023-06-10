@@ -4,8 +4,6 @@
 
 https://pablohc.github.io/proyecto-la-salle-grupo5/
 
-## Visita el site del proyecto
-
 Presentación del proyecto:
 [presentacion](/assets/presentacion.pdf)
 
