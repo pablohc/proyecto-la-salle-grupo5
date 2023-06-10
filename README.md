@@ -5,7 +5,7 @@
 https://pablohc.github.io/proyecto-la-salle-grupo5/
 
 Presentación del proyecto:
-[presentacion](/assets/presentacion.pdf)
+[Presentacion Grupo 5](/assets/presentacion.pdf)
 
 # Comandos de git
 
