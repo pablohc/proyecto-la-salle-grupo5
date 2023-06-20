@@ -1,47 +1,40 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
 
   <main>
-    <TheWelcome />
+    <section id="frameListaTareasId" class="frameListaTareas">
+      <header id="menu"></header>
+    </section>
   </main>
+
+  <footer>
+
+  </footer>
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
+  .frameListaTareas {
+    width: 1520px;
+    height: 730px;
+    background-color: #eeeded;
+    margin-bottom: 10px;
     display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px; 
   }
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
+  #menu{
+    background-color: #aaaaaa;
+    width: 1520px;
+    height: 20px;
+    margin-bottom: 10px;
+    align-items: flex-start;
     display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
   }
-}
+
 </style>
