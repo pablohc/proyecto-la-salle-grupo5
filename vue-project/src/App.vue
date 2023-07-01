@@ -1,4 +1,14 @@
 <script setup>
+  import { ref } from 'vue'
+  import Menu from './Menu.vue'
+  import Footer from './Footer.vue'
+  import Tarea from './Tarea.vue'
+
+  let tareas = ref([])
+
+  const agregarTarea = nombre => {
+    tareas.value.push({ id: Date.now(), nombre })
+  }
 
 </script>
 
@@ -7,9 +17,12 @@
   <main>
     <section id="frameListaTareasId" class="frameListaTareas">
       <header>
-        <nav id="menu">menu</nav>
+        <Menu @agregar-tarea="agregarTarea" />
       </header>
-      <footer id="footer"></footer>
+      <div id="tareas">
+        <Tarea v-for="tarea in tareas" :key="tarea.id" :nombre="tarea.nombre" />
+      </div>
+      <Footer />
     </section>
   </main>
 
@@ -33,32 +46,5 @@
     align-items: center;
     border-radius: 1%; 
   }
-
-  #menu {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    background: rgb(147, 198, 243);
-    font-family: sans-serif;
-    width: 98vw;
-    height: 6vh;
-    position: sticky;
-    top: 0;
-    text-align: center;
-  }
-
-  #footer {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-    background: rgb(147, 198, 243);
-    font-family: sans-serif;
-    width: 98vw;
-    height: 6vh;
-    position: sticky;
-    top: 98vh;
-    text-align: center;
-  }
   
-
 </style>
