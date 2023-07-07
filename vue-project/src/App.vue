@@ -7,7 +7,18 @@
   let tareas = ref([])
 
   const agregarTarea = nombre => {
-    tareas.value.push({ id: Date.now(), nombre })
+    tareas.value.push({ id: Date.now(), nombre, completada: false })
+  }
+
+  const marcarTareaCompletada = tareaId => {
+    const tarea = tareas.value.find(t => t.id === tareaId)
+    if (tarea) {
+      tarea.completada = !tarea.completada
+    }
+  }
+
+  const eliminarTarea = tareaId => {
+    tareas.value = tareas.value.filter(t => t.id !== tareaId)
   }
 
 </script>
@@ -20,7 +31,7 @@
         <Menu @agregar-tarea="agregarTarea" />
       </header>
       <div id="tareas">
-        <Tarea v-for="tarea in tareas" :key="tarea.id" :nombre="tarea.nombre" />
+        <Tarea v-for="tarea in tareas" :key="tarea.id" :nombre="tarea.nombre" :completada="tarea.completada" @completar-tarea="marcarTareaCompletada(tarea.id)" @borrar-tarea="eliminarTarea(tarea.id)"/>
       </div>
       <Footer />
     </section>
