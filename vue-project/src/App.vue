@@ -110,6 +110,6 @@ html, body, #app {
 
 .tarea {
   flex: 0 0 15em;
-  margin-right: 0.5em;
+  margin-right: 1em;
 }
 </style>
