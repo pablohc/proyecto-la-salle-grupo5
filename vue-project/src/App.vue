@@ -1,61 +1,85 @@
-<script setup>
-  import { ref } from 'vue'
-  import Menu from './Menu.vue'
-  import Footer from './Footer.vue'
-  import Tarea from './Tarea.vue'
-
-  let tareas = ref([])
-
-  const agregarTarea = nombre => {
-    tareas.value.push({ id: Date.now(), nombre, completada: false })
-  }
-
-  const marcarTareaCompletada = tareaId => {
-    const tarea = tareas.value.find(t => t.id === tareaId)
-    if (tarea) {
-      tarea.completada = !tarea.completada
-    }
-  }
-
-  const eliminarTarea = tareaId => {
-    tareas.value = tareas.value.filter(t => t.id !== tareaId)
-  }
-
-</script>
-
 <template>
-
   <main>
     <section id="frameListaTareasId" class="frameListaTareas">
       <header>
         <Menu @agregar-tarea="agregarTarea" />
       </header>
-      <div id="tareas">
-        <Tarea v-for="tarea in tareas" :key="tarea.id" :nombre="tarea.nombre" :completada="tarea.completada" @completar-tarea="marcarTareaCompletada(tarea.id)" @borrar-tarea="eliminarTarea(tarea.id)"/>
+      <div id="tareas" class="tareas-container">
+        <div class="tarea" v-for="tarea in tareas" :key="tarea.id">
+          <Tarea
+            :nombre="tarea.nombre"
+            :completada="tarea.completada"
+            :descripcion="tarea.descripcion"
+            @borrar-tarea="borrarTarea(tarea.id)"
+            @update:descripcion="actualizarDescripcion(tarea.id, $event)"
+            @completar-tarea="completarTarea(tarea.id)"
+          />
+        </div>
       </div>
       <Footer />
     </section>
   </main>
-
-
 </template>
 
-<style scoped>
+<script setup>
+import { ref } from 'vue'
+import Menu from './Menu.vue'
+import Footer from './Footer.vue'
+import Tarea from './Tarea.vue'
 
-  html, body, #app {
+let tareas = ref([])
+
+const agregarTarea = nombre => {
+  tareas.value.push({ id: Date.now(), nombre, completada: false, descripcion: '' })
+}
+
+const borrarTarea = tareaId => {
+  tareas.value = tareas.value.filter(tarea => tarea.id !== tareaId)
+}
+
+const actualizarDescripcion = (tareaId, descripcion) => {
+  const tarea = tareas.value.find(t => t.id === tareaId)
+  if (tarea) {
+    tarea.descripcion = descripcion
+  }
+}
+
+const completarTarea = tareaId => {
+  const tarea = tareas.value.find(t => t.id === tareaId)
+  if (tarea) {
+    tarea.completada = !tarea.completada
+  }
+}
+</script>
+
+<style scoped>
+html, body, #app {
   height: 100%;
   margin: 0;
 }
+
 .frameListaTareas {
-    width: 98vw;
-    height: 96vh;
-    background-color: #eeeded;
-    margin-bottom: 2%;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    border-radius: 1%; 
-  }
-  
+  width: 98vw;
+  height: 96vh;
+  background-color: #eeeded;
+  margin-bottom: 2%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 1%;
+}
+
+.tareas-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1em;
+  width: 100%;
+}
+
+.tarea {
+  flex: 0 0 15em;
+}
 </style>

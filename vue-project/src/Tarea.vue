@@ -1,58 +1,142 @@
 <template>
-    <div class="tarea">
+  <div class="tarea">
+    <div class="nombre-y-botones">
       <div :class="['nombre-tarea', { 'completada': completada }]">{{ nombre }}</div>
       <div class="acciones">
         <button @click="completarTarea" class="done">Done</button>
-        <button class="editar">Editar</button>
+        <button @click="alternarEdicion" class="editar">{{ modoEdicion ? 'Guardar' : 'Editar' }}</button>
         <button @click="borrarTarea" class="borrar">Borrar</button>
       </div>
     </div>
-  </template>
-  
-  <script setup>
-  import { ref, defineEmits } from 'vue'
-  
-  // Declaramos que este componente tiene una prop llamada 'nombre'
-  const props = defineProps({
-    nombre: String
-  })
+    <div v-if="modoEdicion" class="descripcion-tarea descripcion-con-margen">
+      <textarea v-model="descripcionTemp" rows="10" placeholder="Descripción de la tarea" class="descripcion-editando"></textarea>
+    </div>
+    <div v-else-if="descripcion" class="descripcion-tarea descripcion-con-margen">
+      <div class="descripcion-scroll">
+        {{ descripcion }}
+      </div>
+    </div>
+  </div>
+</template>
 
-  const emit = defineEmits(['borrar-tarea'])
+<script setup>
+import { defineProps, defineEmits, ref } from 'vue'
 
-  let completada = ref(false)
+const props = defineProps({
+  nombre: String,
+  completada: Boolean,
+  descripcion: String
+})
 
-  const completarTarea = () => {
-    completada.value = !completada.value
-  }
+const emit = defineEmits(['borrar-tarea', 'update:descripcion', 'completar-tarea'])
 
-  const borrarTarea = () => {
-    emit('borrar-tarea')
-  }
-  </script>
-  
-  <style scoped>
-  .tarea {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-    margin: 1em 0;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    background-color: darkkhaki;
-  }
-  
-  .nombre-tarea {
-    flex: 1;
-  }
-  
-  .acciones button {
-    margin-left: 1em;
-  }
+const modoEdicion = ref(false)
+const descripcionTemp = ref(props.descripcion)
 
-  .nombre-tarea.completada {
-    text-decoration: line-through;
+const alternarEdicion = () => {
+  if (modoEdicion.value) {
+    emit('update:descripcion', descripcionTemp.value)
   }
+  modoEdicion.value = !modoEdicion.value
+}
 
-  </style>
-  
+const completarTarea = () => {
+  emit('completar-tarea')
+}
+
+const borrarTarea = () => {
+  emit('borrar-tarea')
+}
+</script>
+
+<style scoped>
+
+.descripcion-scroll {
+  max-height: 30vh; 
+  overflow-y: auto;
+  word-break: break-word;
+  padding-right: 10px;
+}
+
+.descripcion-scroll::-webkit-scrollbar {
+  width: 8px; /* Ancho de la barra de desplazamiento */
+}
+
+.descripcion-scroll::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color del pulgar de la barra de desplazamiento */
+  border-radius: 4px; /* Borde redondeado del pulgar */
+}
+
+.descripcion-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color del pulgar al pasar el cursor sobre él */
+}
+
+
+.tarea {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  margin: 1em 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: darkkhaki;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 88%;
+  min-width: 10em;
+  max-width: 30em;
+}
+
+.nombre-y-botones {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nombre-tarea {
+  flex: 1;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-right: 0.8em;
+}
+
+.nombre-tarea.completada {
+  text-decoration: line-through;
+}
+
+.acciones {
+  display: flex;
+  gap: 0.5em;
+}
+
+.acciones button {
+  flex: 1;
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  border: none;
+  border-radius: 4px;
+  background-color: #337ab7;
+  color: #fff;
+  cursor: pointer;
+}
+
+.acciones button:hover {
+  background-color: #13547a;
+}
+
+.descripcion-tarea {
+  margin-top: 1em;
+}
+
+.descripcion-tarea textarea {
+  width: 93%;
+  resize: vertical;
+  border: none;
+  padding: 1em;
+  margin-top: 0.5em;
+  font-size: 0.9em;
+  color: #777;
+  max-height: 30vh;
+  min-height: 2vh;
+}
+
+</style>
