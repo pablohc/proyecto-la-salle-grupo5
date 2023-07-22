@@ -95,7 +95,7 @@ const borrarTarea = () => {
 .nombre-tarea {
   flex: 1;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1em;
   margin-right: 0.8em;
 }
 

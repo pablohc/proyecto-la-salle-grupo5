@@ -1,18 +1,24 @@
 <template>
     <nav id="menu">
         <div class="entrada-tarea">
-            <input v-model="nuevaTarea" placeholder="Nueva tarea">
+            <input v-model="nuevaTarea" placeholder="Nueva tarea" maxlength="42">
             <button @click="agregarTarea">+</button>
         </div>
+        <select v-model="usuarioSeleccionado">
+            <option v-for="usuario in usuarios" :value="usuario" :key="usuario">{{ usuario }}</option>
+        </select>
     </nav>
 </template>
 
 <script setup>
-    import { ref, defineEmits } from 'vue'
+    import { ref, watch, defineEmits } from 'vue'
 
     let nuevaTarea = ref('')
+    
+    let usuarios = ref(['Marc', 'Elionor', 'Isabel', 'Pablo', 'Marta'])
+    let usuarioSeleccionado = ref(usuarios.value[0])
 
-    const emit = defineEmits(['agregar-tarea'])
+    const emit = defineEmits(['agregar-tarea', 'cambio-usuario'])
 
     const agregarTarea = () => {
         if (nuevaTarea.value.trim() === '') {
@@ -23,6 +29,11 @@
         emit('agregar-tarea', nuevaTarea.value)
         nuevaTarea.value = ''
     }
+
+    watch(usuarioSeleccionado, (newUser) => {
+        emit('cambio-usuario', newUser)
+    })
+
 </script>
 
 <style scoped>
@@ -42,6 +53,7 @@
         display: flex;
         align-items: center;
         width: 45%;
+        margin-right: 1em;
     }
 
     .entrada-tarea input {
