@@ -21,12 +21,13 @@
         </div>
         <div class="contactos-content">
           <h2 class="contactos-title">Contactos</h2>
+          <input v-model="busqueda" @keyup="buscarContacto" placeholder="Buscar contacto">
           <div id="contactos" class="contactos-container">
-            <div class="contacto" v-for="contacto in contactos" :key="contacto.id">
-              <Contacto
-                :contacto="contacto"
-              />
+            <div class="contacto" v-for="contacto in contactosMostrados" :key="contacto.id">
+              <Contacto :contacto="contacto" />
             </div>
+            <!-- Mostrar un mensaje si no hay contactos encontrados -->
+            <p v-if="!contactosMostrados.length" class="empty-message">No se encontraron contactos.</p>
           </div>
         </div>
       </div>
@@ -37,16 +38,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch, onMounted } from 'vue'
 import Menu from './Menu.vue'
 import Footer from './Footer.vue'
 import Tarea from './Tarea.vue'
 import Contacto from './Contacto.vue'
 
-let tareas = ref([])
-let contactos = ref([])
+let tareas = ref([]);
+let contactos = ref([]);
 
-let usuarioSeleccionado = ref('Marc')
+let usuarioSeleccionado = ref('Marc');
+const contactosMostrados = ref([]);
+
+let busqueda = ref('');
 
 const agregarTarea = nombre => {
   tareas.value.push({ id: Date.now(), nombre, completada: false, descripcion: '' })
@@ -165,14 +169,47 @@ const cambioUsuario = async usuario => {
 
     const numeroContactos = Math.ceil(Math.random() * 6); // Generar un número aleatorio de 1 a 6
     const contactosAleatorios = Array.from({length: numeroContactos}, (_, i) => generarContactoAleatorio(i+1));
+    
+    // Primero, realizamos las operaciones de POST para crear los nuevos contactos
     await Promise.all(contactosAleatorios.map(contacto => postData(`https://contacts-api-yy1b.onrender.com/users/${usuario}/contacts`, contacto)));
 
+    // Después de crear los contactos, obtenemos los contactos actualizados
     let contactosResponse = await getData(`https://contacts-api-yy1b.onrender.com/users/${usuario}/contacts`);
     contactos.value = contactosResponse;
+    contactosMostrados.value = [...contactosResponse]; // Hacer una copia de los contactos al cargar la página
   } catch (error) {
     console.error(`Error al cambiar de usuario: ${error}`);
   }
 }
+
+
+const buscarContacto = async () => {
+  const terminoBusqueda = busqueda.value.trim().toLowerCase();
+  if (!terminoBusqueda) {
+    contactosMostrados.value = contactos.value;
+    return;
+  }
+
+  try {
+    const contactosBuscados = contactos.value.filter(contacto =>
+      contacto.name.toLowerCase().includes(terminoBusqueda) ||
+      contacto.phone.includes(terminoBusqueda) ||
+      contacto.email.toLowerCase().includes(terminoBusqueda)
+    );
+    contactosMostrados.value = contactosBuscados;
+  } catch (error) {
+    console.error(`Error al buscar contactos: ${error}`);
+    contactosMostrados.value = [];
+  }
+};
+
+
+watch(busqueda, () => {
+  buscarContacto();
+});
+
+
+
 
 </script>
 
