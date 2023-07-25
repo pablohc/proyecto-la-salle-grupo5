@@ -1,7 +1,7 @@
 <template>
   <div class="tarea">
     <div class="nombre-y-botones">
-      <div :class="['nombre-tarea', { 'completada': completada }]">{{ nombre }}</div>
+      <div :class="['nombre-tarea', { 'completada': completed }]">{{ nombre }}</div>
       <div class="acciones">
         <button @click="completarTarea" class="done">Done</button>
         <button @click="alternarEdicion" class="editar">{{ modoEdicion ? 'Guardar' : 'Editar' }}</button>
@@ -20,22 +20,31 @@
 </template>
 
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { defineProps, defineEmits, ref, watch } from 'vue'
 
 const props = defineProps({
   nombre: String,
-  completada: Boolean,
+  completed: Boolean,
   descripcion: String
 })
 
 const emit = defineEmits(['borrar-tarea', 'update:descripcion', 'completar-tarea'])
 
+let descripcion = ref(props.descripcion);
+let descripcionTemp = ref(descripcion.value);
+
+watch(descripcion, (newDescripcion, oldDescripcion) => {
+  if (newDescripcion !== oldDescripcion) {
+    descripcionTemp.value = newDescripcion;
+  }
+});
+
 const modoEdicion = ref(false)
-const descripcionTemp = ref(props.descripcion)
 
 const alternarEdicion = () => {
-  if (modoEdicion.value) {
+  if (modoEdicion.value && descripcionTemp.value !== descripcion.value) {
     emit('update:descripcion', descripcionTemp.value)
+    descripcion.value = descripcionTemp.value
   }
   modoEdicion.value = !modoEdicion.value
 }

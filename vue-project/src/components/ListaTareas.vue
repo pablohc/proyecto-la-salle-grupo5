@@ -10,12 +10,13 @@
               <div class="tarea" v-for="tarea in tareas" :key="tarea.id">
                 <Tarea
                   :nombre="tarea.nombre"
-                  :completada="tarea.completada"
+                  :completed="tarea.completed"
                   :descripcion="tarea.descripcion"
                   @borrar-tarea="borrarTarea(tarea.id)"
                   @update:descripcion="actualizarDescripcion(tarea.id, $event)"
                   @completar-tarea="completarTarea(tarea.id)"
                 />
+                
               </div>
             </div>
           </div>
@@ -40,7 +41,7 @@
   </template>
   
   <script setup>
-  import { ref, watch, onMounted } from 'vue'
+  import { ref, watch, onMounted} from 'vue'
   import Menu from './Menu.vue'
   import Footer from './Footer.vue'
   import Tarea from './Tarea.vue'
@@ -80,27 +81,91 @@ const generarContactoAleatorio = (id) => {
   return contacto;
 };
   
-  const agregarTarea = nombre => {
-    tareas.value.push({ id: Date.now(), nombre, completada: false, descripcion: '' })
+const agregarTarea = async nombre => {
+  const tareaData = {
+    id: Date.now().toString(),
+    text: nombre,
+    completed: false,
+    description: '',
+    author: usuarioSeleccionado.value,
+    tags: [],
+    createdAt: new Date().toISOString()
+  };
+  try {
+    const tarea = await postData(`https://todos-ddy8.onrender.com/users/${usuarioSeleccionado.value}/todos`, tareaData);
+    tareas.value.push({ ...tarea, nombre: tarea.text, descripcion: tarea.description });  // Añadido el mapeo de descripcion
+  } catch (error) {
+    console.error(`Error al agregar tarea: ${error}`);
   }
+}
+
   
-  const borrarTarea = tareaId => {
-    tareas.value = tareas.value.filter(tarea => tarea.id !== tareaId)
+  const borrarTarea = async tareaId => {
+    try {
+      await deleteData(`https://todos-ddy8.onrender.com/users/${usuarioSeleccionado.value}/todos/${tareaId}`);
+      tareas.value = tareas.value.filter(tarea => tarea.id !== tareaId);
+    } catch (error) {
+      console.error(`Error al borrar tarea: ${error}`);
   }
+}
   
-  const actualizarDescripcion = (tareaId, descripcion) => {
-    const tarea = tareas.value.find(t => t.id === tareaId)
-    if (tarea) {
-      tarea.descripcion = descripcion
+const actualizarDescripcion = async (tareaId, descripcion) => {
+  // Verificar si la tarea existe en el estado local
+  const tarea = tareas.value.find(t => t.id === tareaId);
+  if (!tarea) {
+    console.error('Tarea no encontrada en el estado local');
+    return;
+  }
+
+  // Verificar si la descripción ha cambiado
+  if (tarea.descripcion === descripcion) {
+    return;
+  }
+
+  try {
+
+    // Hacer una llamada PATCH a la API para actualizar la tarea
+    await patchData(`https://todos-ddy8.onrender.com/users/${usuarioSeleccionado.value}/todos/${tareaId}`, {
+      ...tarea,
+      description: descripcion
+    });
+
+    // Actualizar la descripción de la tarea en el estado local
+    actualizarTareaLocal(tareaId, { descripcion });
+  } catch (error) {
+    console.error(`Error al actualizar la descripción de la tarea: ${error}`);
+  }
+}
+
+// Función para actualizar una tarea en el estado local
+const actualizarTareaLocal = (tareaId, cambios) => {
+  const tareaIndex = tareas.value.findIndex(t => t.id === tareaId);
+  if (tareaIndex !== -1) {
+    tareas.value[tareaIndex] = {
+      ...tareas.value[tareaIndex],
+      ...cambios
+    };
+  } else {
+    console.error('Tarea no encontrada en el estado local al intentar actualizarla.');
+  }
+}
+
+
+
+  
+const completarTarea = async tareaId => {
+  const tarea = tareas.value.find(t => t.id === tareaId)
+  if (tarea) {
+    try {
+      tarea.completed = !tarea.completed;
+      await patchData(`https://todos-ddy8.onrender.com/users/${usuarioSeleccionado.value}/todos/${tareaId}`, tarea);
+    } catch (error) {
+      console.error(`Error al completar tarea: ${error}`);
+      tarea.completed = !tarea.completed;
     }
   }
-  
-  const completarTarea = tareaId => {
-    const tarea = tareas.value.find(t => t.id === tareaId)
-    if (tarea) {
-      tarea.completada = !tarea.completada
-    }
-  }
+}
+
   
   const getData = async (url = '') => {
     const response = await fetch(url, {
@@ -138,6 +203,26 @@ const generarContactoAleatorio = (id) => {
   
     return JSON.parse(text);
   }
+
+  const patchData = async (url = '', data = {}) => {
+  const response = await fetch(url, {
+    method: "PATCH",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(data)
+  })
+
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+
+  const text = await response.text();
+  if (!text) {
+    throw new Error('No response text');
+  }
+
+  return JSON.parse(text);
+}
+
   
   const deleteData = async (url = '') => {
     const response = await fetch(url, {
@@ -158,8 +243,19 @@ const generarContactoAleatorio = (id) => {
   }
   
   onMounted(async () => {
+  await initCargaContactos(usuarioSeleccionado.value);
+  try {
+    // Cargar las tareas existentes del usuario
+    const tareasExistentes = await getData(`https://todos-ddy8.onrender.com/users/${usuarioSeleccionado.value}/todos`);
+    tareas.value = tareasExistentes.map(tarea => ({ ...tarea, nombre: tarea.text, descripcion: tarea.description }));
+
+    // Cargar los contactos existentes del usuario
     await initCargaContactos(usuarioSeleccionado.value);
-  });
+  } catch (error) {
+    console.error(`Error al cargar las tareas: ${error}`);
+  }
+});
+
   
   const initCargaContactos = async usuario => {
     try {

@@ -4,7 +4,7 @@
             <input v-model="nuevaTarea" placeholder="Nueva tarea" maxlength="35">
             <button @click="agregarTarea">+</button>
         </div>
-        <p>¡Bienvenido {{usuario}}!</p>
+        <p>¡Hola {{usuario}}!</p>
         <button class="desconectar-button" @click="desconectar">Desconectar</button>
     </nav>
 </template>
