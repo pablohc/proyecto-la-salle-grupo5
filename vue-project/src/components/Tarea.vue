@@ -9,7 +9,8 @@
       </div>
     </div>
     <div v-if="modoEdicion" class="descripcion-tarea descripcion-con-margen">
-      <textarea v-model="descripcionTemp" rows="10" placeholder="Descripción de la tarea" class="descripcion-editando"></textarea>
+      <textarea v-model="descripcionTemp" rows="10" placeholder="Descripción de la tarea"
+        class="descripcion-editando"></textarea>
     </div>
     <div v-else-if="descripcion" class="descripcion-tarea descripcion-con-margen">
       <div class="descripcion-scroll">
@@ -59,25 +60,28 @@ const borrarTarea = () => {
 </script>
 
 <style scoped>
-
 .descripcion-scroll {
-  max-height: 30vh; 
+  max-height: 30vh;
   overflow-y: auto;
   word-break: break-word;
   padding-right: 10px;
 }
 
 .descripcion-scroll::-webkit-scrollbar {
-  width: 8px; /* Ancho de la barra de desplazamiento */
+  width: 8px;
+  /* Ancho de la barra de desplazamiento */
 }
 
 .descripcion-scroll::-webkit-scrollbar-thumb {
-  background-color: #888; /* Color del pulgar de la barra de desplazamiento */
-  border-radius: 4px; /* Borde redondeado del pulgar */
+  background-color: #888;
+  /* Color del pulgar de la barra de desplazamiento */
+  border-radius: 4px;
+  /* Borde redondeado del pulgar */
 }
 
 .descripcion-scroll::-webkit-scrollbar-thumb:hover {
-  background-color: #555; /* Color del pulgar al pasar el cursor sobre él */
+  background-color: #555;
+  /* Color del pulgar al pasar el cursor sobre él */
 }
 
 
@@ -106,7 +110,7 @@ const borrarTarea = () => {
   font-weight: bold;
   font-size: 1em;
   margin-right: 0.8em;
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
 }
 
 .nombre-tarea.completada {
@@ -128,25 +132,27 @@ const borrarTarea = () => {
   cursor: pointer;
 }
 
-.done{
+.done {
   background: rgb(32, 168, 82);
 }
+
 .done:hover {
   background: rgb(16, 97, 46);
 }
 
-.editar{
+.editar {
   background: rgb(214, 212, 51);
 }
+
 .editar:hover {
   background: rgb(141, 129, 21);
 }
 
-.borrar{
+.borrar {
   background: #f44336;
 }
 
-.borrar:hover{
+.borrar:hover {
   background: #80150d;
 }
 
@@ -164,6 +170,4 @@ const borrarTarea = () => {
   color: #777;
   max-height: 30vh;
   min-height: 2vh;
-}
-
-</style>
+}</style>

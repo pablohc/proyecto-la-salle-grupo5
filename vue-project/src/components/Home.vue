@@ -12,12 +12,13 @@
 
     <main>
       <section id="loginSection">
-        <router-link :to="{ name: 'lista-tareas', params: { usuario: usuarioSeleccionado } }" class="button">Iniciar sesión</router-link>
+        <router-link :to="{ name: 'lista-tareas', params: { usuario: usuarioSeleccionado } }" class="button">Iniciar
+          sesión</router-link>
       </section>
     </main>
 
     <footer id="footer">
-        Grupo 5: Pablo, Isabel, Marta, Elionor, Marc
+      Grupo 5: Pablo, Isabel, Marta, Elionor, Marc
     </footer>
   </div>
 </template>
@@ -42,11 +43,13 @@ select {
   border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
-  font-family: Arial, sans-serif; 
-  color: #333; 
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   height: 100%;
   margin: 0;
   display: flex;
@@ -57,10 +60,11 @@ html, body, #app {
 
 .title {
   margin-bottom: 20px;
-  font-family: 'Helvetica Neue', sans-serif; 
-  color: #007BFF; 
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #007BFF;
   font-size: 36px;
-  text-align: center; /* Añadido para centrar el texto */
+  text-align: center;
+  /* Añadido para centrar el texto */
 }
 
 #loginSection {
@@ -82,10 +86,10 @@ html, body, #app {
   margin-top: 20px;
   text-decoration: none;
   margin-bottom: 50vh;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 /* Estilos para el enlace cuando se hace hover */
 .button:hover {
   background-color: #0056b3;
-}
-</style>
+}</style>
