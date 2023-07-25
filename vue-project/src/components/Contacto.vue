@@ -1,6 +1,6 @@
 <template>
     <div class="contacto">
-      <h2>{{ contacto.name }}</h2>
+      <h3 class="nombre-contacto">{{ contacto.name }}</h3>
       <p>Teléfono: {{ contacto.phone }}</p>
       <p>Email: {{ contacto.email }}</p>
     </div>
@@ -39,6 +39,10 @@
     font-size: 0.9em;
     color: #777;
     margin-bottom: 0.2em;
+  }
+
+  .nombre-contacto{
+    font-family:'Courier New', Courier, monospace;
   }
   </style>
   

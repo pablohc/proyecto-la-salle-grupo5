@@ -22,7 +22,8 @@
           <div class="contactos-content">
             <h2 class="contactos-title">Contactos</h2>
             <button @click="generarContactosAleatorios" class="generar-button">Generar nuevos contactos aleatorios</button>
-            <input v-model="busqueda" @keyup="buscarContacto" placeholder="Buscar contacto" class="buscar-input">
+            <h3 class="subtitle-buscar-contacto">Buscar Contacto</h3>
+            <input v-model="busqueda" @keyup="buscarContacto" placeholder="Nombre, apellidos, teléfono o email)" class="buscar-input">
             <div id="contactos" class="contactos-container">
               <div class="contacto" v-for="contacto in contactosMostrados" :key="contacto.id">
                 <Contacto :contacto="contacto" />
@@ -58,8 +59,8 @@
   let busqueda = ref('');
 
   // Arreglos de nombres, apellidos y dominios para generar contactos aleatorios
-const nombres = ["John", "Jane", "Mike", "Alice", "Bob", "Emma", "Charlie", "Sophia"];
-const apellidos = ["Doe", "Smith", "Johnson", "Brown", "Taylor", "Moore", "Jackson", "White"];
+const nombres = ["John", "Jane", "Mike", "Alice", "Bob", "Emma", "Charlie", "Sophia", "Joan", "Miquel"];
+const apellidos = ["Doe", "Smith", "Johnson", "Brown", "Taylor", "Moore", "Jackson", "White","García","Molina"];
 const dominios = ["gmail.com", "hotmail.com", "outlook.com", "yahoo.com"];
 
 // Función para generar un contacto aleatorio
@@ -172,7 +173,7 @@ const generarContactoAleatorio = (id) => {
         contactos.value = contactosActuales;
       } else {
         // Si no se encontraron contactos, crear nuevos contactos aleatorios
-        const numeroContactos = Math.ceil(Math.random() * 6); // Generar un número aleatorio de 1 a 6
+        const numeroContactos = Math.ceil(Math.random() * 8); // Generar un número aleatorio de 1 a 8
         const contactosAleatorios = Array.from({length: numeroContactos}, (_, i) => generarContactoAleatorio(i+1));
         
         // Primero, realizamos las operaciones de POST para crear los nuevos contactos
@@ -377,7 +378,12 @@ const generarContactoAleatorio = (id) => {
   border-radius: 5px;
   width: 100%;
   margin-bottom: 5px;
-  margin-top: 15px;
+  margin-top: 2px;
+}
+
+
+.buscar-input::placeholder {
+  font-size: 0.8em;
 }
 
 /* Estilos para el mensaje de "No se encontraron contactos" */
@@ -385,5 +391,9 @@ const generarContactoAleatorio = (id) => {
   font-size: 1.2em;
   color: #777;
 }
-  </style>
+
+.subtitle-buscar-contacto{
+  font-family:'Courier New', Courier, monospace;
+}
+</style>
   
