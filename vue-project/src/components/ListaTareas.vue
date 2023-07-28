@@ -23,7 +23,7 @@
           <h2 class="contactos-title">Contactos</h2>
           <button @click="generarContactosAleatorios" class="generar-button">Generar nuevos contactos aleatorios</button>
           <h3 class="subtitle-buscar-contacto">Buscar Contacto</h3>
-          <input v-model="busquedaContacto" @keyup="buscarContacto" placeholder="Nombre, apellidos, teléfono o email)"
+          <input v-model="busquedaContacto" @keyup="buscarContacto" placeholder="Nombre, apellidos, teléfono o email"
             class="buscar-input">
           <div id="contactos" class="contactos-container">
             <div class="contacto" v-for="contacto in contactosMostrados" :key="contacto.id">
