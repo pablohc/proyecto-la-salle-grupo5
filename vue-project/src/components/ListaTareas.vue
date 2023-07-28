@@ -2,7 +2,7 @@
   <main>
     <section id="frameListaTareasId" class="frameListaTareas">
       <header>
-        <Menu v-if="usuarioSeleccionado" :usuario="usuarioSeleccionado" @agregar-tarea="agregarTarea" />
+        <Menu :usuario="usuarioSeleccionado" @agregar-tarea="agregarTarea" />
       </header>
       <div class="content">
         <div class="tareas-content">
@@ -23,7 +23,7 @@
           <h2 class="contactos-title">Contactos</h2>
           <button @click="generarContactosAleatorios" class="generar-button">Generar nuevos contactos aleatorios</button>
           <h3 class="subtitle-buscar-contacto">Buscar Contacto</h3>
-          <input v-model="busqueda" @keyup="buscarContacto" placeholder="Nombre, apellidos, teléfono o email)"
+          <input v-model="busquedaContacto" @keyup="buscarContacto" placeholder="Nombre, apellidos, teléfono o email)"
             class="buscar-input">
           <div id="contactos" class="contactos-container">
             <div class="contacto" v-for="contacto in contactosMostrados" :key="contacto.id">
@@ -50,20 +50,14 @@ import Contacto from './Contacto.vue'
 let tareas = ref([]);
 let contactos = ref([]);
 let busquedaTarea = ref('');
+let busquedaContacto = ref('');
+let usuarioSeleccionado = ref(props.usuario);
+const contactosMostrados = ref([]);
+const tareasMostradas = ref([]);
+
 const props = defineProps({
   usuario: String,
 });
-
-let usuarioSeleccionado = ref(props.usuario);
-const contactosMostrados = ref([]);
-
-let busqueda = ref('');
-
-const tareasMostradas
-  = ref([]);
-
-
-
 
 // Arreglos de nombres, apellidos y dominios para generar contactos aleatorios
 const nombres = ["John", "Jane", "Mike", "Alice", "Bob", "Emma", "Charlie", "Sophia", "Joan", "Miquel"];
@@ -99,7 +93,7 @@ const agregarTarea = async nombre => {
   };
   try {
     const tarea = await postData(`https://todos-ddy8.onrender.com/users/${usuarioSeleccionado.value}/todos`, tareaData);
-    tareas.value.push({ ...tarea, nombre: tarea.text, descripcion: tarea.description }); // Utilizar 'map' para mapear el campo 'text' a 'nombre'
+    tareas.value.push({ ...tarea, nombre: tarea.text, descripcion: tarea.description });
     filtrarTareasNoEliminadas(); // Volver a filtrar las tareas después de agregar una nueva tarea
   } catch (error) {
     console.error(`Error al agregar tarea: ${error}`);
@@ -259,11 +253,9 @@ onMounted(async () => {
     const tareasExistentes = await getData(`https://todos-ddy8.onrender.com/users/${usuarioSeleccionado.value}/todos`);
     tareas.value = tareasExistentes.map(tarea => ({ ...tarea, nombre: tarea.text, descripcion: tarea.description, eliminada: false }));
 
-    // Llamar a mostrarTodasLasTareas() para mostrar todas las tareas al cargar la página
+    // Llamar a filtrarTareasNoEliminadas() para mostrar todas las tareas al cargar la página
     filtrarTareasNoEliminadas();
 
-    // Cargar los contactos existentes del usuario
-    await initCargaContactos(usuarioSeleccionado.value);
   } catch (error) {
     console.error(`Error al cargar las tareas: ${error}`);
   }
@@ -328,7 +320,7 @@ const generarContactosAleatorios = async () => {
 };
 
 const buscarContacto = async () => {
-  const terminoBusqueda = busqueda.value.trim().toLowerCase();
+  const terminoBusqueda = busquedaContacto.value.trim().toLowerCase();
   if (!terminoBusqueda) {
     contactosMostrados.value = contactos.value;
     return;
@@ -348,7 +340,7 @@ const buscarContacto = async () => {
 };
 
 
-watch(busqueda, () => {
+watch(busquedaContacto, () => {
   buscarContacto();
 });
 watch(busquedaTarea, () => {
@@ -376,10 +368,6 @@ const buscarTarea = async () => {
   }
 };
 
-// Función para mostrar todas las tareas cuando el campo de búsqueda está vacío
-const mostrarTodasLasTareas = () => {
-  tareasMostradas.value = [...tareas.value];
-};
 </script>
   
 <style scoped>
